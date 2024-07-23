@@ -4,10 +4,14 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import {provideHttpClient} from "@angular/common/http";
+import {provideNgcCookieConsent} from 'ngx-cookieconsent';
+import { cookieConfig } from './app.component';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideClientHydration(),
-    provideHttpClient()]
+    provideHttpClient(),
+    provideNgcCookieConsent(cookieConfig),
+  ]
 };

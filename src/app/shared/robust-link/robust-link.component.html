@@ -1,0 +1,11 @@
+@if (link) {
+  @if (prefix) {
+    <a [href]="prefix + link" target="_blank">{{text}}</a>
+  }
+  @if (!prefix) {
+    <a [href]="link" target="_blank">{{text}}</a>
+  }
+}
+@if (!link) {
+  {{text}}
+}
