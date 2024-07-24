@@ -1,4 +1,14 @@
-import { Component, Input, Output, AfterViewInit, ViewChild, EventEmitter, TemplateRef, OnInit} from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  AfterViewInit,
+  ViewChild,
+  EventEmitter,
+  TemplateRef,
+  OnInit,
+  PLATFORM_ID, Inject
+} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, MatSortHeader } from '@angular/material/sort';
@@ -12,7 +22,7 @@ import {female_values, male_values, published_article_source} from '../constants
 import {ApiDataService} from '../../services/api-data.service';
 import { FormControl, FormGroup, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {subscription_ws_url} from '../constants';
-import { Location, NgTemplateOutlet, NgClass } from '@angular/common';
+import {Location, NgTemplateOutlet, NgClass, isPlatformBrowser} from '@angular/common';
 import { CdkScrollable } from '@angular/cdk/scrolling';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton, MatButton } from '@angular/material/button';
@@ -74,16 +84,19 @@ export class TableServerSideComponent implements OnInit, AfterViewInit {
     source: [{filterValue: ['PPR'], displayValue: 'preprint'}, {filterValue: published_article_source, displayValue: 'published'}],
     assayType: [{filterValue: ['transcription profiling by high throughput sequencing'], displayValue: 'RNA-Seq'}]
   };
+  isBrowser = false;
 
   constructor(private spinner: NgxSpinnerService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
               public dialog: MatDialog,
               private dataService: ApiDataService,
-              location: Location) {
+              location: Location,
+              @Inject(PLATFORM_ID) private platformId: Object) {
     this.location = location;
+    this.isBrowser = isPlatformBrowser(this.platformId);
+    console.log("constructor this.isBrowser: ", this.isBrowser)
   }
-
 
   ngOnInit() {
     this.subscriptionForm = new FormGroup({
@@ -140,10 +153,10 @@ export class TableServerSideComponent implements OnInit, AfterViewInit {
           return observableOf([]);
         })
       ).subscribe((res: any) => {
-          this.dataSource.data = res.data; // set table data
-          this.dataUpdate.emit(res); // emit data update event
-          this.totalHits = res.totalHits; // set length of paginator
-          void this.spinner.hide();
+        this.dataSource.data = res.data; // set table data
+        this.dataUpdate.emit(res); // emit data update event
+        this.totalHits = res.totalHits; // set length of paginator
+        void this.spinner.hide();
         });
   }
 
@@ -255,10 +268,10 @@ export class TableServerSideComponent implements OnInit, AfterViewInit {
     if (this.subscriptionForm?.valid && this.subscriptionForm?.touched) {
       this.dataService.subscribeUser(this.indexDetails['index'], this.indexDetails['indexKey'], data.email, data.filters)
         .subscribe({
-          next: response => {
+          next: () => {
             this.dialogRef.close();
           },
-          error: error => {
+          error: (error: any) => {
             console.log(error);
             this.dialogRef.close();
           }
@@ -267,33 +280,37 @@ export class TableServerSideComponent implements OnInit, AfterViewInit {
   }
 
   setSocket() {
-    const url = `${subscription_ws_url}submission/subscription_${this.indexDetails['index']}/`;
+    if (this.isBrowser) {
+      // Connect to WebSockets here
+      const url = `${subscription_ws_url}submission/subscription_${this.indexDetails['index']}/`;
+      this.socket = new WebSocket(url);
+      this.socket.onopen = () => {
+        console.log('WebSockets connection created.');
+      };
+      this.socket.onmessage = (event: { data: string; }) => {
+        const data = JSON.parse(event.data)['response'];
 
-    this.socket = new WebSocket(url);
-    this.socket.onopen = () => {
-      console.log('WebSockets connection created.');
-    };
-    this.socket.onmessage = (event: { data: string; }) => {
-      const data = JSON.parse(event.data)['response'];
-
-      if (data['submission_message']) {
-        if (this.dialogRef) {
-          this.dialogRef.close();
-          this.dialogRef.afterClosed().pipe(
-            finalize(() => this.dialogRef = undefined)
-          );
+        if (data['submission_message']) {
+          if (this.dialogRef) {
+            this.dialogRef.close();
+            this.dialogRef.afterClosed().pipe(
+              finalize(() => this.dialogRef = undefined)
+            );
+          }
+          this.submission_message = data['submission_message'];
+          this.subscription_status = data['subscription_status'];
+          if (this.subscription_status) {
+            this.dialogSubscriptionInfoRef = this.dialog.open(this.subscriptionInfoTemplate,
+              { data: this.subscriber, height: '250px', width: '600px' });
+          }
         }
-        this.submission_message = data['submission_message'];
-        this.subscription_status = data['subscription_status'];
-        if (this.subscription_status) {
-          this.dialogSubscriptionInfoRef = this.dialog.open(this.subscriptionInfoTemplate,
-            { data: this.subscriber, height: '250px', width: '600px' });
-        }
+      };
+      if (this.socket.readyState === WebSocket.OPEN) {
+        this.socket.onopen(null);
       }
-    };
-    if (this.socket.readyState === WebSocket.OPEN) {
-      this.socket.onopen(null);
     }
+
+
   }
 
   resetPagination(pageIndex: number) {

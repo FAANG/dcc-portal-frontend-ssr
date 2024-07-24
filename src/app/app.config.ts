@@ -6,6 +6,7 @@ import { provideClientHydration } from '@angular/platform-browser';
 import {provideHttpClient} from "@angular/common/http";
 import {provideNgcCookieConsent} from 'ngx-cookieconsent';
 import { cookieConfig } from './app.component';
+import {provideAnimations} from "@angular/platform-browser/animations";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,5 +14,6 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideHttpClient(),
     provideNgcCookieConsent(cookieConfig),
+    provideAnimations()
   ]
 };
