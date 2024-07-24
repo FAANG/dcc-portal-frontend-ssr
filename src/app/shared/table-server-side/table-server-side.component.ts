@@ -95,7 +95,6 @@ export class TableServerSideComponent implements OnInit, AfterViewInit {
               @Inject(PLATFORM_ID) private platformId: Object) {
     this.location = location;
     this.isBrowser = isPlatformBrowser(this.platformId);
-    console.log("constructor this.isBrowser: ", this.isBrowser)
   }
 
   ngOnInit() {
