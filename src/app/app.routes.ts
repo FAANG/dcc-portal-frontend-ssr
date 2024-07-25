@@ -22,6 +22,9 @@ import {OrganismsSummaryComponent} from './organisms-summary/organisms-summary.c
 import {SpecimensSummaryComponent} from './specimens-summary/specimens-summary.component';
 import {DatasetsSummaryComponent} from './datasets-summary/datasets-summary.component';
 import {FilesSummaryComponent} from './files-summary/files-summary.component';
+import {RulesetAnalysisComponent} from './rulesets/ruleset-analysis/ruleset-analysis.component';
+import {RulesetSampleComponent} from './rulesets/ruleset-sample/ruleset-sample.component';
+import {RulesetExperimentComponent} from './rulesets/ruleset-experiment/ruleset-experiment.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -49,4 +52,7 @@ export const routes: Routes = [
   {path: 'summary/specimens', component: SpecimensSummaryComponent},
   {path: 'summary/datasets', component: DatasetsSummaryComponent},
   {path: 'summary/files', component: FilesSummaryComponent},
+  {path: 'ruleset/samples', component: RulesetSampleComponent},
+  {path: 'ruleset/experiments', component: RulesetExperimentComponent},
+  {path: 'ruleset/analyses', component: RulesetAnalysisComponent},
 ];
