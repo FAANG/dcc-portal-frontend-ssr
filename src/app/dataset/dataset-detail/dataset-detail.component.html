@@ -14,53 +14,53 @@
   }
   @if (dataset) {
     <div>
-      <h2>{{dataset.accession}}</h2>
+      <h2>{{dataset['accession']}}</h2>
       <hr>
         <div fxLayout="column">
           <div fxLayout="row" fxLayout.lt-md="column">
             <dt fxFlex="25">Study name:</dt>
             <dd fxFlex="75">
               @if (!_userService.token) {
-                <app-robust-link [prefix]="ena_prefix" [link]="dataset?.accession"
-                [text]="dataset?.accession"></app-robust-link>
+                <app-robust-link [prefix]="ena_prefix" [link]="dataset['accession']"
+                [text]="dataset['accession']"></app-robust-link>
               }
               @if (_userService.token) {
-                <div>{{dataset?.accession}}</div>
+                <div>{{dataset['accession']}}</div>
               }
             </dd>
           </div>
           <div fxLayout="row" fxLayout.lt-md="column">
             <dt fxFlex="25">Title:</dt>
-            <dd fxFlex="75">{{dataset?.title}}</dd>
+            <dd fxFlex="75">{{dataset['title']}}</dd>
           </div>
-          @if (dataset?.alias) {
+          @if (dataset['alias']) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Alias:</dt>
-              <dd fxFlex="75">{{dataset?.alias}}</dd>
+              <dd fxFlex="75">{{dataset['alias']}}</dd>
             </div>
           }
-          @if (dataset?.secondaryProject) {
+          @if (dataset['secondaryProject']) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Sub-project:</dt>
-              <dd fxFlex="75">{{dataset?.secondaryProject}}</dd>
+              <dd fxFlex="75">{{dataset['secondaryProject']}}</dd>
             </div>
           }
-          @if (dataset?.type) {
+          @if (dataset['type']) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Type:</dt>
-              <dd fxFlex="75">{{dataset?.type}}</dd>
+              <dd fxFlex="75">{{dataset['type']}}</dd>
             </div>
           }
-          @if (dataset?.secondaryAccession) {
+          @if (dataset['secondaryAccession']) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Secondary accession:</dt>
               <dd fxFlex="75">
                 @if (!_userService.token) {
-                  <app-robust-link [prefix]="ena_prefix" [link]="dataset?.secondaryAccession"
-                  [text]="dataset?.secondaryAccession"></app-robust-link>
+                  <app-robust-link [prefix]="ena_prefix" [link]="dataset['secondaryAccession']"
+                  [text]="dataset['secondaryAccession']"></app-robust-link>
                 }
                 @if (_userService.token) {
-                  <div>{{dataset?.secondaryAccession}}</div>
+                  <div>{{dataset['secondaryAccession']}}</div>
                 }
               </dd>
             </div>
@@ -70,26 +70,26 @@
             <dd fxFlex="75">
               @for (organism of dataset['species']; track organism) {
                 <div fxLayout="row" fxLayout.lt-md="column">
-                  <app-robust-link [prefix]="ols_prefix" [link]="organism?.ontologyTerms"
+                  <app-robust-link [prefix]="ols_prefix" [link]="organism['ontologyTerms']"
                   [text]="organism?.text"></app-robust-link>
                   &nbsp;
                 </div>
               }
             </dd>
           </div>
-          @if (dataset?.experiment) {
+          @if (dataset['experiment']) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Experiment accessions:</dt>
               <dd fxFlex="75">
                 <div fxLayout="row wrap" fxLayout.lt-md="column">
-                  @for (experiment of dataset?.experiment; track experiment) {
+                  @for (experiment of dataset['experiment']; track experiment) {
                     <div fxFlex="15" fxLayoutGap="16px">
                       @if (!_userService.token) {
-                        <app-robust-link [prefix]="ena_prefix" [link]="experiment.accession"
-                        [text]="experiment.accession"></app-robust-link>
+                        <app-robust-link [prefix]="ena_prefix" [link]="experiment['accession']"
+                        [text]="experiment['accession']"></app-robust-link>
                       }
                       @if (_userService.token) {
-                        <div>{{experiment.accession}}</div>
+                        <div>{{experiment['accession']}}</div>
                       }
                     </div>
                   }
@@ -97,21 +97,21 @@
               </dd>
             </div>
           }
-          @if (dataset?.instrument) {
+          @if (dataset['instrument']) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Instruments:</dt>
               <dd fxFlex="75">
-                @for (instrument of dataset?.instrument; track instrument) {
+                @for (instrument of dataset['instrument']; track instrument) {
                   <div fxLayout="row" fxLayout.lt-md="column">{{instrument}}  </div>
                 }
               </dd>
             </div>
           }
-          @if (dataset?.centerName) {
+          @if (dataset['centerName']) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Sequencing center:</dt>
               <dd fxFlex="75">
-                @for (center of dataset?.centerName; track center) {
+                @for (center of dataset['centerName']; track center) {
                   <div fxLayout="row" fxLayout.lt-md="column">{{center}}</div>
                 }
               </dd>
@@ -119,16 +119,16 @@
           }
           <div fxLayout="row" fxLayout.lt-md="column">
             <dt fxFlex="25">Standard:</dt>
-            <dd fxFlex="75">{{dataset?.standardMet}}</dd>
+            <dd fxFlex="75">{{dataset['standardMet']}}</dd>
           </div>
           @if (dataset && dataset.hasOwnProperty('submitterEmail')) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Submitter Emails:</dt>
-              <dd fxFlex="75">{{dataset.submitterEmail}}</dd>
+              <dd fxFlex="75">{{dataset['submitterEmail']}}</dd>
             </div>
           }
         </div>
-        @if (dataset.secondaryProject && dataset?.secondaryProject.toString() === 'GENE-SWitCH') {
+        @if (dataset['secondaryProject'] && dataset['secondaryProject'].toString() === 'GENE-SWitCH') {
           <div fxLayout="row" fxLayoutAlign="end">
             @if (queryService.downloading) {
               <div>
@@ -143,13 +143,13 @@
           </div>
         }
         <app-related-items source_type="dataset" target_type="paper" [data]="relatedArticles"
-        download_key="" [record_id]="dataset.accession"></app-related-items>
+        download_key="" [record_id]="dataset['accession']"></app-related-items>
         <app-related-items source_type="dataset" target_type="specimen" [data]="relatedSpecimen"
-        download_key="" [record_id]="dataset.accession"></app-related-items>
+        download_key="" [record_id]="dataset['accession']"></app-related-items>
         <app-related-items source_type="dataset" target_type="file" [data]="relatedFiles"
-        download_key="url" [record_id]="dataset.accession"></app-related-items>
+        download_key="url" [record_id]="dataset['accession']"></app-related-items>
         <app-related-items source_type="dataset" target_type="analysis"
-        download_key="" [record_id]="dataset.accession"></app-related-items>
+        download_key="" [record_id]="dataset['accession']"></app-related-items>
       </div>
     }
     @if (error) {
