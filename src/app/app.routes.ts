@@ -18,6 +18,10 @@ import {ProtocolExperimentComponent} from './protocol-experiment/protocol-experi
 import {ProtocolExperimentDetailsComponent} from './protocol-experiment/protocol-experiment-details/protocol-experiment-details.component';
 import {ProtocolAnalysisComponent} from './protocol-analysis/protocol-analysis.component';
 import {ProtocolAnalysisDetailsComponent} from './protocol-analysis/protocol-analysis-details/protocol-analysis-details.component';
+import {OrganismsSummaryComponent} from './organisms-summary/organisms-summary.component';
+import {SpecimensSummaryComponent} from './specimens-summary/specimens-summary.component';
+import {DatasetsSummaryComponent} from './datasets-summary/datasets-summary.component';
+import {FilesSummaryComponent} from './files-summary/files-summary.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -40,4 +44,9 @@ export const routes: Routes = [
   {path: 'protocol/experiments/:id', component: ProtocolExperimentDetailsComponent},
   {path: 'protocol/analysis', component: ProtocolAnalysisComponent},
   {path: 'protocol/analysis/:id', component: ProtocolAnalysisDetailsComponent},
+  {path: 'summary', redirectTo: 'summary/organisms', pathMatch: 'full'},
+  {path: 'summary/organisms', component: OrganismsSummaryComponent},
+  {path: 'summary/specimens', component: SpecimensSummaryComponent},
+  {path: 'summary/datasets', component: DatasetsSummaryComponent},
+  {path: 'summary/files', component: FilesSummaryComponent},
 ];
