@@ -29,39 +29,39 @@
               <dt fxFlex="25">BioSample ID:</dt>
               @if (!_userService.token) {
                 <dd fxFlex="75">
-                  <a href="http://www.ebi.ac.uk/biosamples/samples/{{organism?.biosampleId}}">{{organism?.biosampleId}}</a>
+                  <a href="http://www.ebi.ac.uk/biosamples/samples/{{organism['biosampleId']}}">{{organism['biosampleId']}}</a>
                 </dd>
               }
               @if (_userService.token) {
                 <dd fxFlex="75">
-                  {{organism?.biosampleId}}
+                  {{organism['biosampleId']}}
                 </dd>
               }
             </div>
           }
-          @if (organism && organism.hasOwnProperty('alternativeId') && organism.alternativeId.length !== 0) {
+          @if (organism && organism.hasOwnProperty('alternativeId') && organism['alternativeId'].length !== 0) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Alternative ID:</dt>
-              <dd fxFlex="75">{{organism.alternativeId.toString()}}</dd>
+              <dd fxFlex="75">{{organism['alternativeId'].toString()}}</dd>
             </div>
           }
           @if (organism && organism.hasOwnProperty('releaseDate')) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Release date:</dt>
-              <dd fxFlex="75">{{organism?.releaseDate}}</dd>
+              <dd fxFlex="75">{{organism['releaseDate']}}</dd>
             </div>
           }
           @if (organism && organism.hasOwnProperty('updateDate')) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Update date:</dt>
-              <dd fxFlex="75">{{organism?.updateDate}}</dd>
+              <dd fxFlex="75">{{organism['updateDate']}}</dd>
             </div>
           }
           @if (organism && organism.hasOwnProperty('sex')) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Sex:</dt>
               <dd fxFlex="75">
-                <app-robust-link [prefix]="ols_prefix" [link]="organism?.sex?.ontologyTerms" [text]="organism?.sex?.text"></app-robust-link>
+                <app-robust-link [prefix]="ols_prefix" [link]="organism['sex']['ontologyTerms']" [text]="organism['sex']['text']"></app-robust-link>
               </dd>
             </div>
           }
@@ -69,7 +69,7 @@
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Organism:</dt>
               <dd fxFlex="75">
-                <app-robust-link [prefix]="ols_prefix" [link]="organism?.organism?.ontologyTerms" [text]="organism?.organism?.text"></app-robust-link>
+                <app-robust-link [prefix]="ols_prefix" [link]="organism['organism']['ontologyTerms']" [text]="organism['organism']['text']"></app-robust-link>
               </dd>
             </div>
           }
@@ -77,7 +77,7 @@
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Breed:</dt>
               <dd fxFlex="75">
-                <app-robust-link [prefix]="ols_prefix" [link]="organism?.breed.ontologyTerms" [text]="organism?.breed?.text"></app-robust-link>
+                <app-robust-link [prefix]="ols_prefix" [link]="organism['breed']['ontologyTerms']" [text]="organism['breed']['text']"></app-robust-link>
               </dd>
             </div>
           }
@@ -90,44 +90,44 @@
           @if (organism && organism.hasOwnProperty('standardMet')) {
             <div fxLayout="row" fxLayout.lt-md="column" >
               <dt fxFlex="25">Standard met:</dt>
-              <dd fxFlex="75">{{organism?.standardMet}}</dd>
+              <dd fxFlex="75">{{organism['standardMet']}}</dd>
             </div>
           }
           @if (organism && organism.hasOwnProperty('project')) {
             <div fxLayout="row" fxLayout.lt-md="column" >
               <dt fxFlex="25">Project:</dt>
-              <dd fxFlex="75">{{organism?.project}}</dd>
+              <dd fxFlex="75">{{organism['project']}}</dd>
             </div>
           }
           @if (organism && organism.hasOwnProperty('secondaryProject')) {
             <div fxLayout="row" fxLayout.lt-md="column" >
               <dt fxFlex="25">Secondary project:</dt>
-              <dd fxFlex="75">{{organism?.secondaryProject}}</dd>
+              <dd fxFlex="75">{{organism['secondaryProject']}}</dd>
             </div>
           }
-          @if (organism?.healthStatus) {
+          @if (organism['healthStatus']) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Health status:</dt>
               <dd fxFlex="75">
-                @for (status of organism?.healthStatus; track status) {
+                @for (status of organism['healthStatus']; track status) {
                   <div fxLayout="row" fxLayout.lt-md="column">
-                    <app-robust-link [link]="status.ontologyTerms" [text]="status.text"></app-robust-link>
+                    <app-robust-link [link]="status['ontologyTerms']" [text]="status.text"></app-robust-link>
                   </div>
                 }
               </dd>
             </div>
           }
-          @if (organism?.availability) {
+          @if (organism['availability']) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Availability:</dt>
-              <dd fxFlex="75"><a href={{organism?.availability}}>{{dealWithAvailability(organism?.availability)}}</a></dd>
+              <dd fxFlex="75"><a href={{organism['availability']}}>{{dealWithAvailability(organism['availability'])}}</a></dd>
             </div>
           }
           @if (organism && organism.hasOwnProperty('organization')) {
             <div fxLayout="row" fxLayout.lt-md="column" >
               <dt fxFlex="25">Organisation:</dt>
               <dd fxFlex="75">
-                @for (organization of organism?.organization; track organization) {
+                @for (organization of organism['organization']; track organization) {
                   <div fxLayout="row" fxLayout.lt-md="column">
                     <app-robust-link [link]="organization.URL" [text]="organization.name"></app-robust-link>&nbsp;( {{organization.role}})
                   </div>
@@ -135,77 +135,77 @@
               </dd>
             </div>
           }
-          @if (organism?.description) {
+          @if (organism['description']) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Description:</dt>
-              <dd fxFlex="75">{{organism?.description}}</dd>
+              <dd fxFlex="75">{{organism['description']}}</dd>
             </div>
           }
-          @if (organism?.birthDate?.text) {
+          @if (organism['birthDate']['text']) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Birth date:</dt>
-              <dd fxFlex="75">{{organism?.birthDate?.text}}</dd>
+              <dd fxFlex="75">{{organism['birthDate']['text']}}</dd>
             </div>
           }
-          @if (organism?.birthLocation) {
+          @if (organism['birthLocation']) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Birth location:</dt>
-              <dd fxFlex="75">{{organism?.birthLocation}}</dd>
+              <dd fxFlex="75">{{organism['birthLocation']}}</dd>
             </div>
           }
-          @if (organism?.birthLocationLongitude?.text) {
+          @if (organism['birthLocationLongitude']['text']) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Birth longitude:</dt>
-              <dd fxFlex="75">{{organism?.birthLocationLongitude?.text}} {{organism?.birthLocationLongitude.unit}}</dd>
+              <dd fxFlex="75">{{organism['birthLocationLongitude']['text']}} {{organism['birthLocationLongitude'].unit}}</dd>
             </div>
           }
-          @if (organism?.birthLocationLatitude?.text) {
+          @if (organism['birthLocationLatitude']['text']) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Birth latitude:</dt>
-              <dd fxFlex="75">{{organism?.birthLocationLatitude?.text}} {{organism?.birthLocationLatitude?.unit}}</dd>
+              <dd fxFlex="75">{{organism['birthLocationLatitude']['text']}} {{organism['birthLocationLatitude']?.unit}}</dd>
             </div>
           }
-          @if (organism?.birthWeight?.text) {
+          @if (organism['birthWeight']['text']) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Birth weight:</dt>
-              <dd fxFlex="75">{{organism?.birthWeight?.text}} {{organism?.birthWeight?.unit}}</dd>
+              <dd fxFlex="75">{{organism['birthWeight']['text']}} {{organism['birthWeight']?.unit}}</dd>
             </div>
           }
-          @if (organism?.placentalWeight?.text) {
+          @if (organism['placentalWeight']['text']) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Placental weight:</dt>
-              <dd fxFlex="75">{{organism?.placentalWeight?.text}} {{organism?.placentalWeight?.unit}}</dd>
+              <dd fxFlex="75">{{organism['placentalWeight']['text']}} {{organism['placentalWeight']?.unit}}</dd>
             </div>
           }
-          @if (organism?.pregnancyLength?.text) {
+          @if (organism['pregnancyLength']['text']) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Pregnancy length:</dt>
-              <dd fxFlex="75">{{organism?.pregnancyLength?.text}} {{organism?.pregnancyLength?.unit}}</dd>
+              <dd fxFlex="75">{{organism['pregnancyLength']['text']}} {{organism['pregnancyLength']?.unit}}</dd>
             </div>
           }
-          @if (organism?.deliveryTiming) {
+          @if (organism['deliveryTiming']) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Delivery timing:</dt>
-              <dd fxFlex="75">{{organism?.deliveryTiming}}</dd>
+              <dd fxFlex="75">{{organism['deliveryTiming']}}</dd>
             </div>
           }
-          @if (organism?.deliveryEase) {
+          @if (organism['deliveryEase']) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Delivery ease:</dt>
-              <dd fxFlex="75">{{organism?.deliveryEase}}</dd>
+              <dd fxFlex="75">{{organism['deliveryEase']}}</dd>
             </div>
           }
-          @if (organism?.sameAs) {
+          @if (organism['sameAs']) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Same as:</dt>
-              <dd fxFlex="75">{{organism?.sameAs}}</dd>
+              <dd fxFlex="75">{{organism['sameAs']}}</dd>
             </div>
           }
-          @if (organism?.childOf) {
+          @if (organism['childOf']) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Child of:</dt>
               <dd fxFlex="75">
-                @for (child of organism?.childOf; track child) {
+                @for (child of organism['childOf']; track child) {
                   <div fxLayout="row" fxLayout.lt-md="column">
                     @if (!_userService.token) {
                       <app-robust-link [prefix]="organism_prefix" [link]="child" [text]="child"></app-robust-link>
@@ -218,19 +218,19 @@
               </dd>
             </div>
           }
-          @if (organism?.pedigree) {
+          @if (organism['pedigree']) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Pedigree:</dt>
-              <dd fxFlex="75"><a href={{organism?.pedigree}}>{{organism?.pedigree}}</a></dd>
+              <dd fxFlex="75"><a href={{organism['pedigree']}}>{{organism['pedigree']}}</a></dd>
             </div>
           }
-          @if (organism?.customField?.length > 0;) {
+          @if (organism['customField']?.length > 0;) {
             <div fxLayout="column">
-              @for (field of organism?.customField; track field) {
+              @for (field of organism['customField']; track field) {
                 <div fxLayout="row" fxLayout.lt-md="column">
                   <dt fxFlex="25">{{field.name}}:</dt>
                   <dd fxFlex="75">
-                    <app-robust-link [prefix]="ols_prefix" [link]="field.ontologyTerms" [text]="field.value"></app-robust-link>  {{field?.unit}}
+                    <app-robust-link [prefix]="ols_prefix" [link]="field['ontologyTerms']" [text]="field.value"></app-robust-link>  {{field?.unit}}
                   </dd>
                 </div>
               }

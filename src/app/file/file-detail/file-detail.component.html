@@ -21,26 +21,26 @@
           <dt fxFlex="25">File name:</dt>
           <dd fxFlex="75">{{ file?.name }}</dd>
         </div>
-        @if (file?.secondaryProject) {
+        @if (file['secondaryProject']) {
           <div fxLayout="row" fxLayout.lt-md="column">
             <dt fxFlex="25">Sub-project:</dt>
-            <dd fxFlex="75">{{file?.secondaryProject}}</dd>
+            <dd fxFlex="75">{{file['secondaryProject']}}</dd>
           </div>
         }
-        @if (file?.releaseDate) {
+        @if (file['releaseDate']) {
           <div fxLayout="row" fxLayout.lt-md="column">
             <dt fxFlex="25">Release date:</dt>
-            <dd fxFlex="75">{{file?.releaseDate}}</dd>
+            <dd fxFlex="75">{{file['releaseDate']}}</dd>
           </div>
         }
         <div fxLayout="row" fxLayout.lt-md="column">
           <dt fxFlex="25">Update date:</dt>
-          <dd fxFlex="75">{{file?.updateDate}}</dd>
+          <dd fxFlex="75">{{file['updateDate']}}</dd>
         </div>
         <div fxLayout="row" fxLayout.lt-md="column">
           <dt fxFlex="25">Organism:</dt>
           <dd fxFlex="75">
-            <app-robust-link [prefix]="ols_prefix" [link]="file?.species?.ontologyTerms"
+            <app-robust-link [prefix]="ols_prefix" [link]="file?.species['ontologyTerms']"
                              [text]="file?.species?.text"></app-robust-link>
           </dd>
         </div>
@@ -48,71 +48,71 @@
           <dt fxFlex="25">Specimen:</dt>
           <dd fxFlex="75">
             @if (!_userService.token) {
-              <app-robust-link [prefix]="specimen_prefix" [link]="file?.specimen" [text]="file?.specimen"></app-robust-link>
+              <app-robust-link [prefix]="specimen_prefix" [link]="file['specimen']" [text]="file['specimen']"></app-robust-link>
             }
             @if (_userService.token) {
-              <a [routerLink]="['/specimen/' + file?.specimen ]">{{file?.specimen}}</a>
+              <a [routerLink]="['/specimen/' + file['specimen'] ]">{{file['specimen']}}</a>
             }
           </dd>
         </div>
-        @if (file?.organism) {
+        @if (file['organism']) {
           <div fxLayout="row" fxLayout.lt-md="column">
             <dt fxFlex="25">BioSample ID:</dt>
             <dd fxFlex="75">
               @if (!_userService.token) {
-                <app-robust-link [prefix]="organism_prefix" [link]="file?.organism" [text]="file?.organism"></app-robust-link>
+                <app-robust-link [prefix]="organism_prefix" [link]="file['organism']" [text]="file['organism']"></app-robust-link>
               }
               @if (_userService.token) {
-                <a [routerLink]="['/organism/' + file?.organism ]">{{file?.organism}}</a>
+                <a [routerLink]="['/organism/' + file['organism'] ]">{{file['organism']}}</a>
               }
             </dd>
           </div>
         }
         <div fxLayout="row" fxLayout.lt-md="column">
           <dt fxFlex="25">File size:</dt>
-          <dd fxFlex="75">{{file?.size}} ({{file?.readableSize}})</dd>
+          <dd fxFlex="75">{{file?.size}} ({{file['readableSize']}})</dd>
         </div>
         <div fxLayout="row" fxLayout.lt-md="column">
           <dt fxFlex="25">Archive:</dt>
-          <dd fxFlex="75">{{file?.archive}}</dd>
+          <dd fxFlex="75">{{file['archive']}}</dd>
         </div>
-        @if (file?.readCount) {
+        @if (file['readCount']) {
           <div fxLayout="row" fxLayout.lt-md="column">
             <dt fxFlex="25">Read count:</dt>
-            <dd fxFlex="75">{{file?.readCount}}</dd>
+            <dd fxFlex="75">{{file['readCount']}}</dd>
           </div>
         }
-        @if (file?.baseCount) {
+        @if (file['baseCount']) {
           <div fxLayout="row" fxLayout.lt-md="column">
             <dt fxFlex="25">Base count:</dt>
-            <dd fxFlex="75">{{file?.baseCount}}</dd>
+            <dd fxFlex="75">{{file['baseCount']}}</dd>
           </div>
         }
-        @if (file?.submission) {
+        @if (file['submission']) {
           <div fxLayout="row" fxLayout.lt-md="column">
             <dt fxFlex="25">Submission:</dt>
             <dd fxFlex="75">
               @if (!_userService.token) {
-                <app-robust-link [prefix]="ena_prefix" [link]="file?.submission"
-                                 [text]="file?.submission"></app-robust-link>
+                <app-robust-link [prefix]="ena_prefix" [link]="file['submission']"
+                                 [text]="file['submission']"></app-robust-link>
               }
               @if (_userService.token) {
-                <div>{{file?.submission}}</div>
+                <div>{{file['submission']}}</div>
               }
             </dd>
           </div>
         }
-        @if (file?.experiment?.accession) {
+        @if (file['experiment']['accession']) {
           <div fxLayout="row" fxLayout.lt-md="column">
             <dt fxFlex="25">Experiment:</dt>
             @if (!_userService.token) {
               <dd fxFlex="75">
                 @if (!_userService.token) {
-                  <app-robust-link [prefix]="ena_prefix" [link]="file?.experiment?.accession"
-                                   [text]="file?.experiment?.accession"></app-robust-link>
+                  <app-robust-link [prefix]="ena_prefix" [link]="file['experiment']['accession']"
+                                   [text]="file['experiment']['accession']"></app-robust-link>
                 }
                 @if (_userService.token) {
-                  <div>{{file?.experiment?.accession}}</div>
+                  <div>{{file['experiment']['accession']}}</div>
                 }
                 <button class="btn btn-info btn-sm" id="exp_dropdown" (click)="toggleExperiment()">Experiment details</button>
                 @if (showExperimentDetail) {
@@ -161,40 +161,40 @@
               </dd>
             }
             @if (_userService.token) {
-              <dd fxFlex="75">{{file?.experiment?.accession}}</dd>
+              <dd fxFlex="75">{{file['experiment']['accession']}}</dd>
             }
           </div>
         }
-        @if (file?.study?.accession) {
+        @if (file['study']['accession']) {
           <div fxLayout="row" fxLayout.lt-md="column">
             <dt fxFlex="25">Study:</dt>
             <dd fxFlex="75">
               @if (!_userService.token) {
-                <app-robust-link [prefix]="dataset_prefix" [link]="file?.study?.accession"
-                                 [text]="file?.study?.accession"></app-robust-link>
+                <app-robust-link [prefix]="dataset_prefix" [link]="file['study']['accession']"
+                                 [text]="file['study']['accession']"></app-robust-link>
               }
               @if (_userService.token) {
-                <a [routerLink]="['/dataset/' + file?.study?.accession ]">{{file?.study?.accession}}</a>
+                <a [routerLink]="['/dataset/' + file['study']['accession'] ]">{{file['study']['accession']}}</a>
               }
             </dd>
           </div>
         }
-        @if (file?.study?.title) {
+        @if (file['study']?.title) {
           <div fxLayout="row" fxLayout.lt-md="column">
             <dt fxFlex="25">Study title:</dt>
-            <dd fxFlex="75">{{file?.study?.title}}</dd>
+            <dd fxFlex="75">{{file['study']?.title}}</dd>
           </div>
         }
-        @if (file?.run?.accession) {
+        @if (file?.run['accession']) {
           <div fxLayout="row" fxLayout.lt-md="column">
             <dt fxFlex="25">Run:</dt>
             <dd fxFlex="75">
               @if (!_userService.token) {
-                <app-robust-link [prefix]="ena_prefix" [link]="file?.run?.accession"
-                                 [text]="file?.run?.accession"></app-robust-link>
+                <app-robust-link [prefix]="ena_prefix" [link]="file?.run['accession']"
+                                 [text]="file?.run['accession']"></app-robust-link>
               }
               @if (_userService.token) {
-                <div>{{file?.run?.accession}}</div>
+                <div>{{file?.run['accession']}}</div>
               }
             </dd>
           </div>
@@ -205,52 +205,52 @@
             <dd fxFlex="75">{{file?.run?.platform}}</dd>
           </div>
         }
-        @if (file?.run?.instrument) {
+        @if (file?.run['instrument']) {
           <div fxLayout="row" fxLayout.lt-md="column">
             <dt fxFlex="25">Instrument:</dt>
-            <dd fxFlex="75">{{file?.run?.instrument}}</dd>
+            <dd fxFlex="75">{{file?.run['instrument']}}</dd>
           </div>
         }
-        @if (file?.run?.centerName) {
+        @if (file?.run['centerName']) {
           <div fxLayout="row" fxLayout.lt-md="column">
             <dt fxFlex="25">Center name:</dt>
-            <dd fxFlex="75">{{file?.run?.centerName}}</dd>
+            <dd fxFlex="75">{{file?.run['centerName']}}</dd>
           </div>
         }
-        @if (file?.run?.sequencingDate) {
+        @if (file?.run['sequencingDate']) {
           <div fxLayout="row" fxLayout.lt-md="column">
             <dt fxFlex="25">Sequencing date:</dt>
-            <dd fxFlex="75">{{file?.run?.sequencingDate}}</dd>
+            <dd fxFlex="75">{{file?.run['sequencingDate']}}</dd>
           </div>
         }
-        @if (file?.run?.sequencingLocation) {
+        @if (file?.run['sequencingLocation']) {
           <div fxLayout="row" fxLayout.lt-md="column">
             <dt fxFlex="25">Sequencing location:</dt>
-            <dd fxFlex="75">{{file?.run?.sequencingLocation}}</dd>
+            <dd fxFlex="75">{{file?.run['sequencingLocation']}}</dd>
           </div>
         }
-        @if (file?.run?.sequencingLatitude) {
+        @if (file?.run['sequencingLatitude']) {
           <div fxLayout="row" fxLayout.lt-md="column">
             <dt fxFlex="25">Sequencing latitude:</dt>
-            <dd fxFlex="75">{{file?.run?.sequencingLatitude}} (decimal degrees)</dd>
+            <dd fxFlex="75">{{file?.run['sequencingLatitude']}} (decimal degrees)</dd>
           </div>
         }
-        @if (file?.run?.sequencingLongitude) {
+        @if (file?.run['sequencingLongitude']) {
           <div fxLayout="row" fxLayout.lt-md="column">
             <dt fxFlex="25">Sequencing longitude:</dt>
-            <dd fxFlex="75">{{file?.run?.sequencingLongitude}} (decimal degrees)</dd>
+            <dd fxFlex="75">{{file?.run['sequencingLongitude']}} (decimal degrees)</dd>
           </div>
         }
-        @if (file && file.hasOwnProperty('experiment') && file.experiment.hasOwnProperty('standardMet')) {
+        @if (file && file.hasOwnProperty('experiment') && file['study'].hasOwnProperty('standardMet')) {
           <div fxLayout="row" fxLayout.lt-md="column">
             <dt fxFlex="25">Standard met:</dt>
-            <dd fxFlex="75">{{file.experiment.standardMet}}</dd>
+            <dd fxFlex="75">{{file['study']['standardMet']}}</dd>
           </div>
         }
         @if (file && file.hasOwnProperty('submitterEmail')) {
           <div fxLayout="row" fxLayout.lt-md="column">
             <dt fxFlex="25">Submitter Emails:</dt>
-            <dd fxFlex="75">{{file.submitterEmail}}</dd>
+            <dd fxFlex="75">{{file['submitterEmail']}}</dd>
           </div>
         }
       </div>
@@ -259,7 +259,7 @@
       </app-related-items>
       @if (!_userService.token) {
         <app-related-items source_type="file" target_type="download" download_key="_source.url"
-                           [record_id]="file.run.accession">
+                           [record_id]="file.run['accession']">
         </app-related-items>
       }
       <ng-container>

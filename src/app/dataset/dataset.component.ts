@@ -167,7 +167,7 @@ export class DatasetComponent implements OnInit, OnDestroy {
         a.click();
         this.downloading = false;
       },
-      error: (err) => {
+      error: () => {
         this.downloading = false;
       }
     });

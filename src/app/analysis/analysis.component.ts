@@ -147,7 +147,7 @@ export class AnalysisComponent implements OnInit, OnDestroy {
         a.click();
         this.downloading = false;
       },
-      error: (err) => {
+      error: () => {
         this.downloading = false;
       },
       complete: () => {

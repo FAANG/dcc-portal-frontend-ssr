@@ -67,16 +67,16 @@ export class FileDetailComponent implements OnInit {
             this.relatedArticles = data['hits']['hits'][0]['_source']['publishedArticles'];
             void this.spinner.hide();
             if (this.file.hasOwnProperty('experiment')) {
-              this.dataService.getExperimentByAccession(this.file['experiment']['accession']).subscribe(
-                (experiment_data: any) => {
+              this.dataService.getExperimentByAccession(this.file['experiment']['accession']).subscribe({
+                next: (experiment_data: any) => {
                   if (Array.isArray(experiment_data['hits']['hits']) && experiment_data['hits']['hits'].length > 0) {
                     this.experiment = this.expandObject(experiment_data['hits']['hits'][0]['_source'], this.experiment);
                   }
                 },
-                error => {
+                error: error => {
                   this.error = error;
                 }
-              );
+            });
             }
           }
         }
