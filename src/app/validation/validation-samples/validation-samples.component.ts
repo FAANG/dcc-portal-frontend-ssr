@@ -1,7 +1,6 @@
-import {Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, Inject, OnDestroy, OnInit, PLATFORM_ID, ViewChild} from '@angular/core';
 import { FileUploader, FileUploadModule } from 'ng2-file-upload';
 import {Title} from '@angular/platform-browser';
-import { NgxSmartModalService, NgxSmartModalModule } from 'ngx-smart-modal';
 import { ApiDataService } from '../../services/api-data.service';
 import { MatPaginator } from '@angular/material/paginator';
 import {
@@ -21,7 +20,7 @@ import { MatTableDataSource, MatTable, MatColumnDef, MatHeaderCellDef, MatHeader
   MatRowDef, MatRow } from '@angular/material/table';
 import { MatIcon } from '@angular/material/icon';
 import { ExtendedModule } from '@angular/flex-layout/extended';
-import { NgClass, NgStyle, DatePipe } from '@angular/common';
+import {NgClass, NgStyle, DatePipe, isPlatformBrowser} from '@angular/common';
 import { MatTooltip } from '@angular/material/tooltip';
 import { FormsModule } from '@angular/forms';
 import { MatRadioGroup, MatRadioButton } from '@angular/material/radio';
@@ -29,6 +28,7 @@ import { FlexModule } from '@angular/flex-layout/flex';
 import { MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle, MatExpansionPanelDescription } from '@angular/material/expansion';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { HeaderComponent } from '../../shared/header/header.component';
+import { NgxSmartModalService, NgxSmartModalModule } from 'ngx-smart-modal';
 
 const UploadURL = validation_service_url + '/conversion/samples';
 
@@ -40,8 +40,7 @@ const UploadURL = validation_service_url + '/conversion/samples';
   imports: [HeaderComponent, MatButton, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle, MatExpansionPanelDescription,
     MatTabGroup, MatTab, FlexModule, RouterLink, FileUploadModule, MatRadioGroup, FormsModule, MatRadioButton, MatTooltip, NgClass,
     ExtendedModule, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, NgStyle, MatHeaderRowDef, MatHeaderRow,
-    MatRowDef, MatRow, MatPaginator, MatIconButton, MatIcon, NgxSmartModalModule, DatePipe],
-  providers: [ NgxSmartModalService ],
+    MatRowDef, MatRow, MatPaginator, MatIconButton, MatIcon, DatePipe, NgxSmartModalModule],
 })
 export class ValidationSamplesComponent implements OnInit, OnDestroy {
   @ViewChild('tabs', { static: true }) tabGroup!: MatTabGroup;
@@ -106,11 +105,14 @@ export class ValidationSamplesComponent implements OnInit, OnDestroy {
 
   constructor(
     private titleService: Title,
-    public ngxSmartModalService: NgxSmartModalService,
     private apiDataService: ApiDataService,
     public _userService: UserService,
-    private router: Router
-  ) { }
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object,
+    public ngxSmartModalService: NgxSmartModalService,
+  ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
 
   ngOnInit() {
     this.currentDate = new Date;
@@ -237,70 +239,72 @@ export class ValidationSamplesComponent implements OnInit, OnDestroy {
   }
 
   setSocket() {
-    const url = validation_ws_url + this.fileid + '/';
-    this.socket = new WebSocket(url);
-    this.socket.onopen = () => {
-      console.log('WebSockets connection created.');
-    };
-    this.socket.onmessage = (event: { data: string; }) => {
-      const data = JSON.parse(event.data)['response'];
-      console.log(data);
-      if (data['conversion_status']) {
-        this.conversion_status = data['conversion_status'];
-      }
-      if (data['domains']) {
-        if (data['domains'].length !== 0) {
-          this.domains = data['domains'];
-          this.disableChooseDomainForm = false;
-          this.domain.name = this.domains[this.domains.length - 1];
-        } else {
-          this.disableDomainForm = false;
+    if (this.isBrowser) {
+      const url = validation_ws_url + this.fileid + '/';
+      this.socket = new WebSocket(url);
+      this.socket.onopen = () => {
+        console.log('WebSockets connection created.');
+      };
+      this.socket.onmessage = (event: { data: string; }) => {
+        const data = JSON.parse(event.data)['response'];
+        console.log(data);
+        if (data['conversion_status']) {
+          this.conversion_status = data['conversion_status'];
         }
-      }
-      if (data['submission_results']) {
-        this.submissionResults = Object.entries(data['submission_results']);
-        if (this.submissionResults.length !== 0) {
-          const data: any[] = [];
-          this.submissionResults.forEach(record => {
-            const rowObj = {};
-            const cols = ['Sample Name', 'BioSample ID'];
-            for (const index in cols) {
-              if (cols[index]) {
-                rowObj[cols[index]] = record[index];
+        if (data['domains']) {
+          if (data['domains'].length !== 0) {
+            this.domains = data['domains'];
+            this.disableChooseDomainForm = false;
+            this.domain.name = this.domains[this.domains.length - 1];
+          } else {
+            this.disableDomainForm = false;
+          }
+        }
+        if (data['submission_results']) {
+          this.submissionResults = Object.entries(data['submission_results']);
+          if (this.submissionResults.length !== 0) {
+            const data: any[] = [];
+            this.submissionResults.forEach(record => {
+              const rowObj = {};
+              const cols = ['Sample Name', 'BioSample ID'];
+              for (const index in cols) {
+                if (cols[index]) {
+                  rowObj[cols[index]] = record[index];
+                }
               }
-            }
-            data.push(rowObj);
-          });
-          this.subResults.data = data;
-          this.triggerFalseClick();
+              data.push(rowObj);
+            });
+            this.subResults.data = data;
+            this.triggerFalseClick();
+          }
         }
-      }
-      if (data['submission_message']) {
-        this.submission_message = data['submission_message'];
-      }
-      if (data['validation_status']) {
-        this.validation_status = data['validation_status'];
-      }
-      if (data['submission_status']) {
-        this.submission_status = data['submission_status'];
-      }
-      if (data['errors']) {
-        this.errors.push(data['errors']);
-      }
-      if (data['annotation_status']) {
-        this.annotation_status = data['annotation_status'];
-      }
-      if (data['table_data']) {
-        this.validation_results = data['table_data'];
-        this.setValidationResults();
-      }
-      if (data['bovreg_submission']) {
-        this.bovreg_submission = true;
-      }
-    };
+        if (data['submission_message']) {
+          this.submission_message = data['submission_message'];
+        }
+        if (data['validation_status']) {
+          this.validation_status = data['validation_status'];
+        }
+        if (data['submission_status']) {
+          this.submission_status = data['submission_status'];
+        }
+        if (data['errors']) {
+          this.errors.push(data['errors']);
+        }
+        if (data['annotation_status']) {
+          this.annotation_status = data['annotation_status'];
+        }
+        if (data['table_data']) {
+          this.validation_results = data['table_data'];
+          this.setValidationResults();
+        }
+        if (data['bovreg_submission']) {
+          this.bovreg_submission = true;
+        }
+      };
 
-    if (this.socket.readyState === WebSocket.OPEN) {
-      this.socket.onopen(null);
+      if (this.socket.readyState === WebSocket.OPEN) {
+        this.socket.onopen(null);
+      }
     }
   }
 
@@ -632,7 +636,10 @@ export class ValidationSamplesComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.socket.close();
+    if (this.isBrowser && this.socket) {
+      this.socket.close();
+    }
   }
 
 }
+

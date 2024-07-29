@@ -1,4 +1,4 @@
-import { ApplicationConfig } from '@angular/core';
+import {ApplicationConfig, importProvidersFrom} from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -7,6 +7,7 @@ import {provideHttpClient} from "@angular/common/http";
 import {provideNgcCookieConsent} from 'ngx-cookieconsent';
 import { cookieConfig } from './app.component';
 import {provideAnimations} from "@angular/platform-browser/animations";
+import {NgxSmartModalModule} from "ngx-smart-modal";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,6 +15,7 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideHttpClient(),
     provideNgcCookieConsent(cookieConfig),
-    provideAnimations()
+    provideAnimations(),
+    importProvidersFrom(NgxSmartModalModule.forRoot())
   ]
 };
