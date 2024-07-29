@@ -25,6 +25,9 @@ import {FilesSummaryComponent} from './files-summary/files-summary.component';
 import {RulesetAnalysisComponent} from './rulesets/ruleset-analysis/ruleset-analysis.component';
 import {RulesetSampleComponent} from './rulesets/ruleset-sample/ruleset-sample.component';
 import {RulesetExperimentComponent} from './rulesets/ruleset-experiment/ruleset-experiment.component';
+import {ValidationSamplesComponent} from './validation/validation-samples/validation-samples.component';
+// import {ValidationExperimentsComponent} from './validation/validation-experiments/validation-experiments.component';
+// import {ValidationAnalysesComponent} from './validation/validation-analyses/validation-analyses.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -55,4 +58,5 @@ export const routes: Routes = [
   {path: 'ruleset/samples', component: RulesetSampleComponent},
   {path: 'ruleset/experiments', component: RulesetExperimentComponent},
   {path: 'ruleset/analyses', component: RulesetAnalysisComponent},
+  {path: 'validation/samples', component: ValidationSamplesComponent},
 ];

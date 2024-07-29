@@ -3,7 +3,7 @@
   <form [formGroup]="subscriptionForm" novalidate>
     <p>
       <mat-form-field appearance="fill" [style.width.%]="100">
-        <input matInput [(ngModel)]="inputData.email" placeholder="Enter email" formControlName="subscriberEmail" id="subscriberEmail">
+        <input matInput [(ngModel)]="inputData['email']" placeholder="Enter email" formControlName="subscriberEmail" id="subscriberEmail">
         <mat-hint align="end">Enter a valid email address.</mat-hint>
         @if (displayError('subscriberEmail', 'required')) {
           <mat-error>

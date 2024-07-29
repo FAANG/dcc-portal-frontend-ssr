@@ -73,7 +73,7 @@ export class ProtocolExperimentDetailsComponent implements OnInit {
           if (this.protocol) {
             void this.spinner.hide();
             this.link = getProtocolLink(this.protocol.url);
-            if (this.protocol.experiments) {
+            if (this.protocol['experiments']) {
               this.dataSource.data = this.protocol['experiments'];
             }
           }

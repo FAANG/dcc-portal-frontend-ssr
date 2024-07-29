@@ -1,4 +1,4 @@
-<div [hidden]="isEmptyData() && initialDataExists===false">
+<div [hidden]="isEmptyData() && !initialDataExists">
   @if (!['protocolsamples','protocolfiles','protocolanalysis'].includes(target_type)) {
     <hr>
     }

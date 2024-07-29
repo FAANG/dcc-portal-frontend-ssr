@@ -55,7 +55,7 @@ export class ProtocolSampleDetailsComponent implements OnInit {
         } else {
           this.file = data['hits']['hits'][0]['_source'];
           if (this.file) {
-            if (this.file.specimens) {
+            if (this.file['specimens']) {
               this.dataSource.data = this.file['specimens'];
             }
             void this.spinner.hide();

@@ -120,7 +120,7 @@
           @if (organism['availability']) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Availability:</dt>
-              <dd fxFlex="75"><a href={{organism['availability']}}>{{dealWithAvailability(organism['availability'])}}</a></dd>
+              <dd fxFlex="75"><a href="{{organism['availability']}}">{{dealWithAvailability(organism['availability'])}}</a></dd>
             </div>
           }
           @if (organism && organism.hasOwnProperty('organization')) {
@@ -221,7 +221,7 @@
           @if (organism['pedigree']) {
             <div fxLayout="row" fxLayout.lt-md="column">
               <dt fxFlex="25">Pedigree:</dt>
-              <dd fxFlex="75"><a href={{organism['pedigree']}}>{{organism['pedigree']}}</a></dd>
+              <dd fxFlex="75"><a href="{{organism['pedigree']}}">{{organism['pedigree']}}</a></dd>
             </div>
           }
           @if (organism['customField']?.length > 0;) {

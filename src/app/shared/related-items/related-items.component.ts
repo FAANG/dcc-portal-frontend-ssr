@@ -238,9 +238,9 @@ export class RelatedItemsComponent implements OnInit {
         this.record_id, this.getSort(), this.paginator.pageIndex * 10, this.mode, this.search
       ).subscribe(
         (data: any) => {
-          this.records = data.hits.hits;
+          this.records = data['hits']['hits'];
           this.dataSource.data = this.getDataSource(this.records);
-          this.totalHits = data.hits.total.value;
+          this.totalHits = data['hits']['total']['value'];
         });
     } else if (relationship_type === 'specimen-paper') {
         this.dataSource.data = this.getDataSource(this.data);

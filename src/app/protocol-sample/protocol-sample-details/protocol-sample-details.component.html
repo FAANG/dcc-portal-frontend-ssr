@@ -8,24 +8,24 @@
     <div fxLayout="row" fxLayout.lt-md="column">
       <dt fxFlex="25">Specimen collection protocol:</dt>
       <dd fxFlex="75">
-        <app-robust-link [link]="link" [text]="file?.key"></app-robust-link>
+        <app-robust-link [link]="link" [text]="file['key']"></app-robust-link>
       </dd>
     </div>
     <div fxLayout="row" fxLayout.lt-md="column">
       <dt fxFlex="25">Organisation:</dt>
-      <dd fxFlex="75">{{file?.universityName}}</dd>
+      <dd fxFlex="75">{{file['universityName']}}</dd>
     </div>
     <div fxLayout="row" fxLayout.lt-md="column">
       <dt fxFlex="25">Protocol date:</dt>
-      <dd fxFlex="75">{{file?.protocolDate}}</dd>
+      <dd fxFlex="75">{{file['protocolDate']}}</dd>
     </div>
   </div>
   <hr>
 
-  @if (file?.specimens && file?.specimens.length > 0) {
+  @if (file['specimens'] && file['specimens'].length > 0) {
     <h3 style="margin: 20px 0 20px 0;">Related Specimens and Organisms</h3>
   }
-  <div class="table-responsive" [hidden]="!file?.specimens || file?.specimens.length == 0">
+  <div class="table-responsive" [hidden]="!file['specimens'] || file['specimens'].length == 0">
 
     <table mat-table matSort matSortDisableClear [dataSource]="dataSource" table-striped style="width: 100%">
       @for (col of display_fields; track col; let i = $index) {

@@ -265,7 +265,7 @@ export class RulesetSampleComponent implements OnInit {
         this.all_data = data;
         this.name = data.title;
         this.description = data.description;
-        this.details = data.properties.describedBy.const;
+        this.details = data.properties['describedBy']['const'];
         this.mandatory_data = this.getMandatoryData(data);
         this.length = Object.keys(this.data.properties).filter(term => special_sheets.indexOf(term) === -1).length;
         this.rules = Object.keys(data.properties);

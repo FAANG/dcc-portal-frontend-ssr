@@ -94,7 +94,7 @@ export class TableClientSideComponent implements OnInit {
             if (col === 'ontology_type' || col === 'project') {
               const ontology_type_values = data[col].split(', ');
               let found = false;
-              ontology_type_values.forEach((val, i) => {
+              ontology_type_values.forEach((val: any, i: any) => {
                 if (searchTerms[col].indexOf(val) >= 0) {
                   found = true;
                 }

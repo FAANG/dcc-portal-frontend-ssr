@@ -29,7 +29,7 @@ export class OntologyService {
     const url = validation_service_url + '/ontology_improver/register/';
     return this.http.post(url, userData).pipe(
       map((data: any) => {
-        return data.user_id;
+        return data['user_id'];
       }),
       catchError(this.handleRegError),
     );
@@ -46,7 +46,7 @@ export class OntologyService {
       .set('filters', JSON.stringify(filters)).set('from_', 0);
     return this.http.get(url, {params: params}).pipe(
       map((data: any) => {
-        const res = data.hits.hits.map((entry: { [x: string]: any; }) => entry['_source']);
+        const res = data['hits']['hits'].map((entry: { [x: string]: any; }) => entry['_source']);
         return res;
       }),
       catchError(this.handleError),
@@ -128,7 +128,7 @@ export class OntologyService {
     const url = `${this.hostSetting.host}data/summary_ontologies/_search/?size=10`;
     return this.http.get(url).pipe(
       map((data: any) => {
-        const res = data.hits.hits.map((entry: { [x: string]: any; }) => entry['_source']);
+        const res = data['hits']['hits'].map((entry: { [x: string]: any; }) => entry['_source']);
         return res;
       }),
       catchError(this.handleError),
