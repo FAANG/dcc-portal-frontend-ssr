@@ -32,6 +32,8 @@ import {SubprojectComponent} from './subprojects/subproject.component';
 import { SubprojectDetailComponent } from './subprojects/subproject-detail/subproject-detail.component';
 import {LoginComponent} from './login/login.component'; //doesn't used
 import {FilesUploadComponent} from './files-upload/files-upload.component';
+import { OntologyImproverComponent } from './ontology-improver/ontology-improver.component';
+import { OntologyDetailComponent } from './ontology-improver/ontology-detail/ontology-detail.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -70,4 +72,6 @@ export const routes: Routes = [
   {path: 'login', component: LoginComponent}, //TO CHECK
 
   {path: 'upload_protocol', component: FilesUploadComponent},
+  {path: 'ontology', component: OntologyImproverComponent},
+  {path: 'ontology/:id', component: OntologyDetailComponent},
 ];
