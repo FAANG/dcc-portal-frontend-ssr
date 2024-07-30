@@ -28,6 +28,8 @@ import {RulesetExperimentComponent} from './rulesets/ruleset-experiment/ruleset-
 import {ValidationSamplesComponent} from './validation/validation-samples/validation-samples.component';
 import {ValidationExperimentsComponent} from './validation/validation-experiments/validation-experiments.component';
 import {ValidationAnalysesComponent} from './validation/validation-analyses/validation-analyses.component';
+import {SubprojectComponent} from './subprojects/subproject.component';
+import { SubprojectDetailComponent } from './subprojects/subproject-detail/subproject-detail.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -61,4 +63,6 @@ export const routes: Routes = [
   {path: 'validation/samples', component: ValidationSamplesComponent},
   {path: 'validation/experiments', component: ValidationExperimentsComponent},
   {path: 'validation/analyses', component: ValidationAnalysesComponent},
+  {path: 'projects', component: SubprojectComponent},
+  {path: 'projects/:id', component: SubprojectDetailComponent},
 ];

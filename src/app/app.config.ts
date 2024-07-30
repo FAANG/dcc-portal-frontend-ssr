@@ -8,6 +8,7 @@ import {provideNgcCookieConsent} from 'ngx-cookieconsent';
 import { cookieConfig } from './app.component';
 import {provideAnimations} from "@angular/platform-browser/animations";
 import {NgxSmartModalModule} from "ngx-smart-modal";
+import {IMAGE_CONFIG} from "@angular/common";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,6 +17,13 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideNgcCookieConsent(cookieConfig),
     provideAnimations(),
-    importProvidersFrom(NgxSmartModalModule.forRoot())
+    importProvidersFrom(NgxSmartModalModule.forRoot()),
+    {
+      provide: IMAGE_CONFIG,
+      useValue: {
+        disableImageSizeWarning: true,
+        disableImageLazyLoadWarning: true
+      }
+    },
   ]
 };
