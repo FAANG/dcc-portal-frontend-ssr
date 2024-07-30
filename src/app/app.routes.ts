@@ -30,6 +30,8 @@ import {ValidationExperimentsComponent} from './validation/validation-experiment
 import {ValidationAnalysesComponent} from './validation/validation-analyses/validation-analyses.component';
 import {SubprojectComponent} from './subprojects/subproject.component';
 import { SubprojectDetailComponent } from './subprojects/subproject-detail/subproject-detail.component';
+import {LoginComponent} from './login/login.component'; //doesn't used
+import {FilesUploadComponent} from './files-upload/files-upload.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -65,4 +67,7 @@ export const routes: Routes = [
   {path: 'validation/analyses', component: ValidationAnalysesComponent},
   {path: 'projects', component: SubprojectComponent},
   {path: 'projects/:id', component: SubprojectDetailComponent},
+  {path: 'login', component: LoginComponent}, //TO CHECK
+
+  {path: 'upload_protocol', component: FilesUploadComponent},
 ];
