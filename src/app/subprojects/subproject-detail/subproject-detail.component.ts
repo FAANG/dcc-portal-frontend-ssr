@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit, PLATFORM_ID, ViewEncapsulation} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 import {ActivatedRoute, NavigationEnd, Params, Router} from '@angular/router';
 import {NgxSpinnerService} from 'ngx-spinner';
@@ -10,7 +10,7 @@ import { RelatedItemsComponent } from '../../shared/related-items/related-items.
 import { EnsemblAnnotationComponent } from '../../shared/ensembl-annotation/ensembl-annotation.component';
 import { MatCard } from '@angular/material/card';
 import { ExtendedModule } from '@angular/flex-layout/extended';
-import { NgClass } from '@angular/common';
+import {isPlatformBrowser, NgClass} from '@angular/common';
 import { FlexModule } from '@angular/flex-layout/flex';
 import { MatButton } from '@angular/material/button';
 import { HeaderComponent } from '../../shared/header/header.component';
@@ -47,16 +47,22 @@ export class SubprojectDetailComponent implements OnInit, OnDestroy {
       enabled: false,
     },
   };
+  relatedTables: any = [];
+  isBrowser = false;
+
 
   constructor(private route: ActivatedRoute,
               private spinner: NgxSpinnerService,
               private router: Router,
               private titleService: Title,
-              protected _userService: UserService) {
+              protected _userService: UserService,
+              @Inject(PLATFORM_ID) private platformId: Object) {
     this.initTwitterWidget();
+    this.isBrowser = isPlatformBrowser(this.platformId);
   }
 
   ngOnInit() {
+    this.relatedTables = ['publication', 'pipeline', 'dataset', 'file', 'organism', 'specimen'];
     this.tabs = Object.keys(this.tabsConfig);
     void this.spinner.show();
     this.right_logo_url = {
@@ -98,35 +104,37 @@ export class SubprojectDetailComponent implements OnInit, OnDestroy {
   }
 
   initTwitterWidget() {
-    this.twitter = this.router.events.subscribe(val => {
-      if (val instanceof NavigationEnd) {
-        (<any>window).twttr = (function (d, s, id) {
-          let js: any;
-          const fjs = d.getElementsByTagName(s)[0],
-            t = (<any>window).twttr || {};
-          if (d.getElementById(id)) {
+    if (this.isBrowser) {
+      this.twitter = this.router.events.subscribe(val => {
+        if (val instanceof NavigationEnd) {
+          (<any>window).twttr = (function (d, s, id) {
+            let js: any;
+            const fjs = d.getElementsByTagName(s)[0],
+              t = (<any>window).twttr || {};
+            if (d.getElementById(id)) {
+              return t;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = 'https://platform.twitter.com/widgets.js';
+            // @ts-ignore
+            fjs.parentNode.insertBefore(js, fjs);
+
+            t._e = [];
+            t.ready = function (f: any) {
+              t._e.push(f);
+            };
+
             return t;
+          }(document, 'script', 'twitter-wjs'));
+
+          if ((<any>window).twttr.ready()) {
+            (<any>window).twttr.widgets.load();
           }
-          js = d.createElement(s);
-          js.id = id;
-          js.src = 'https://platform.twitter.com/widgets.js';
-          // @ts-ignore
-          fjs.parentNode.insertBefore(js, fjs);
 
-          t._e = [];
-          t.ready = function (f: any) {
-            t._e.push(f);
-          };
-
-          return t;
-        }(document, 'script', 'twitter-wjs'));
-
-        if ((<any>window).twttr.ready()) {
-          (<any>window).twttr.widgets.load();
         }
-
-      }
-    });
+      });
+    }
   }
 
   logout() {
@@ -139,7 +147,9 @@ export class SubprojectDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.twitter.unsubscribe();
+    if (this.isBrowser && this.twitter) {
+      this.twitter.unsubscribe();
+    }
   }
 
   public enableTab(emittedVal: any): void {

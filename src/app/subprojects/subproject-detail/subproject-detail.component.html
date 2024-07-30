@@ -65,53 +65,21 @@
       <div style="margin-bottom: 40px;"></div>
 
 
-      @defer (on viewport){
+      <div #ensemblannotation></div>
+      @defer (on viewport(ensemblannotation)){
         <app-ensembl-annotation [projectArr]="[project]"></app-ensembl-annotation>
       } @placeholder {
         <div>Loading..</div>
       }
 
       <!-- Related Tables -->
-      @defer (on viewport){
-        <app-related-items source_type="project" target_type="publication" download_key=""
-                           [record_id]="project"></app-related-items>
-      } @placeholder {
-        <div>Loading..</div>
-      }
-
-      @defer (on viewport){
-        <app-related-items source_type="project" target_type="pipeline" download_key=""
-                           [record_id]="project"></app-related-items>
-      } @placeholder {
-        <div>Loading..</div>
-      }
-
-      @defer (on viewport){
-        <app-related-items source_type="project" target_type="dataset" download_key=""
-                           [record_id]="project"></app-related-items>
-      } @placeholder {
-        <div>Loading..</div>
-      }
-
-      @defer (on viewport){
-        <app-related-items source_type="project" target_type="file" download_key="url"
-                           [record_id]="project"></app-related-items>
-      } @placeholder {
-        <div>Loading..</div>
-      }
-
-      @defer (on viewport){
-        <app-related-items source_type="project" target_type="organism" download_key=""
-                           [record_id]="project"></app-related-items>
-      } @placeholder {
-        <div>Loading..</div>
-      }
-
-      @defer (on viewport){
-        <app-related-items source_type="project" target_type="specimen" download_key=""
-                           [record_id]="project"></app-related-items>
-      } @placeholder {
-        <div>Loading..</div>
+      @for (table of relatedTables; track table) {
+        @defer (on viewport) {
+          <app-related-items source_type="project" [target_type]=table download_key=""
+                             [record_id]="project"></app-related-items>
+        } @placeholder {
+          <div>loading table</div>
+        }
       }
 
 
