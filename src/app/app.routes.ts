@@ -34,6 +34,9 @@ import {LoginComponent} from './login/login.component'; //doesn't used
 import {FilesUploadComponent} from './files-upload/files-upload.component';
 import { OntologyImproverComponent } from './ontology-improver/ontology-improver.component';
 import { OntologyDetailComponent } from './ontology-improver/ontology-detail/ontology-detail.component';
+import { ApiDocsComponent } from './api-docs/api-docs.component';
+import { TrackhubsSubmissionComponent } from './trackhubs-submission/trackhubs-submission.component';
+import { NextflowSubmissionComponent } from './nextflow-submission/nextflow-submission.component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -74,4 +77,8 @@ export const routes: Routes = [
   {path: 'upload_protocol', component: FilesUploadComponent},
   {path: 'ontology', component: OntologyImproverComponent},
   {path: 'ontology/:id', component: OntologyDetailComponent},
+
+  {path: 'api', component: ApiDocsComponent},
+  {path: 'trackhubs', component: TrackhubsSubmissionComponent},
+  {path: 'nextflowSubmission', component: NextflowSubmissionComponent},
 ];
