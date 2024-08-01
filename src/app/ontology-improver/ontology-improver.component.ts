@@ -1,4 +1,13 @@
-import {Component, OnDestroy, OnInit, ViewChild, TemplateRef, Inject, PLATFORM_ID} from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+  TemplateRef,
+  Inject,
+  PLATFORM_ID,
+  AfterViewInit
+} from '@angular/core';
 import {OntologyService} from '../services/ontology.service';
 import { MatDialog, MatDialogContent } from '@angular/material/dialog';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -31,21 +40,19 @@ import { FilterComponent } from '../shared/filter/filter.component';
 import { MatButton, MatIconButton } from '@angular/material/button';
 import { FlexModule } from '@angular/flex-layout/flex';
 import { HeaderComponent } from '../shared/header/header.component';
-import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-ontology-improver',
   templateUrl: './ontology-improver.component.html',
   styleUrls: ['./ontology-improver.component.css'],
   standalone: true,
-  host: {ngSkipHydration: 'true'},
   imports: [HeaderComponent, MatTabGroup, MatTab, FlexModule, MatButton, FilterComponent, ActiveFilterComponent, MatProgressSpinner,
     TableServerSideComponent, FormsModule, MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle, MatTable,
     MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow,
     TableClientSideComponent, CdkScrollable, MatDialogContent, MatFormField, MatLabel, MatInput, MatIconButton, MatSuffix,
     MatIcon, ReactiveFormsModule, MatSelect, MatOption, CdkTextareaAutosize, RouterLink, MatBadge, JsonPipe, KeyValuePipe]
 })
-export class OntologyImproverComponent implements OnInit, OnDestroy {
+export class OntologyImproverComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('loginModalTemplate', {static: true}) public loginModalTemplate!: TemplateRef<any>;
   @ViewChild('editModalTemplate', {static: true}) public editModalTemplate!: TemplateRef<any>;
   @ViewChild('selectProjectModalTemplate', {static: true}) public selectProjectModalTemplate!: TemplateRef<any>;
@@ -131,64 +138,72 @@ export class OntologyImproverComponent implements OnInit, OnDestroy {
     private titleService: Title,
     private aggregationService: AggregationService,
     private fb: FormBuilder,
-    @Inject(PLATFORM_ID) private platformId: Object,
-    private cdref: ChangeDetectorRef) {
+    @Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
 
   ngOnInit() {
-    this.token = sessionStorage.getItem('token');
-    this.username = sessionStorage.getItem('user') || '';
     this.titleService.setTitle('Ontology Improver');
+    if (this.isBrowser) {
+      this.token = sessionStorage.getItem('token');
+      this.username = sessionStorage.getItem('user') || '';
 
-    this.hide = true;
-    this.disableOntologyCreation = false;
-    this.mode = 'input';
-    this.registerUser = false;
-    this.ontologyTerms = '';
-    this.searchResults = {};
-    this.ontologyMatches = {};
-    this.filter_field = {};
-    this.selectedTerm = {'key': '', 'index': 0};
-    this.showSpinner = false;
-    this.userComments = '';
-    this.createForm();
-    if (this.username) {
-      this.setSocket();
+      this.hide = true;
+      this.disableOntologyCreation = false;
+      this.mode = 'input';
+      this.registerUser = false;
+      this.ontologyTerms = '';
+      this.searchResults = {};
+      this.ontologyMatches = {};
+      this.filter_field = {};
+      this.selectedTerm = {'key': '', 'index': 0};
+      this.showSpinner = false;
+      this.userComments = '';
+      this.createForm();
+      if (this.username) {
+        this.setSocket();
+      }
+
+      this.templates = {
+        'term': this.ontologyTermTemplate,
+        'type': this.ontologyTypeTemplate,
+        'projects': this.ontologyProjectTemplate,
+        'tags': this.ontologyTagsTemplate,
+        'type_counts': this.typeCountTemplate,
+        'activity': this.activityTemplate,
+        'upvotes_count': this.ontologyVotesTemplate
+      };
+      this.loadTableDataFunction = this.dataService.getAllOntologies.bind(this.dataService);
+      // getting filters from url
+      this.activatedRoute.queryParams.subscribe((params: Params) => {
+        this.filterStateService.resetFilter();
+        this.loadInitialPageState(params);
+      });
+
+      this.tableServerComponent.dataUpdate.subscribe((data) => {
+        this.aggregationService.getAggregations(data.aggregations, 'ontology');
+      });
+
+      this.aggrSubscription = this.filterStateService.updateUrlParams(this.query, ['ontology']);
+
+      // fetch usage statistics summary
+      this.ontologyService.getUsageStatistics().subscribe((data) => {
+        this.usageStats = data;
+      });
+
+      this.species = ['Capra hircus', 'Equus caballus', 'Gallus gallus', 'Ovis aries', 'Salmo salar', 'Scophthalmus maximus', 'Sus scrofa',
+        'Bubalus bubalis', 'Bos indicus', 'Dicentrarchus labrax', 'Sparus aurata', 'Oncorhynchus mykiss', 'Cyprinus carpio carpio',
+        'Bos taurus'];
+      this.types = ['cellType', 'organismPart', 'sex', 'developmentalStage', 'cultureType', 'breed', 'healthStatusAtCollection',
+        'healthStatus', 'organism', 'species', 'material', 'organismpart', 'celltype'];
     }
 
-    this.templates = {
-      'term': this.ontologyTermTemplate,
-      'type': this.ontologyTypeTemplate,
-      'projects': this.ontologyProjectTemplate,
-      'tags': this.ontologyTagsTemplate,
-      'type_counts': this.typeCountTemplate,
-      'activity': this.activityTemplate,
-      'upvotes_count': this.ontologyVotesTemplate
-    };
-    this.loadTableDataFunction = this.dataService.getAllOntologies.bind(this.dataService);
-    // getting filters from url
-    this.activatedRoute.queryParams.subscribe((params: Params) => {
-      this.filterStateService.resetFilter();
-      this.loadInitialPageState(params);
-    });
 
-    this.tableServerComponent.dataUpdate.subscribe((data) => {
-      this.aggregationService.getAggregations(data.aggregations, 'ontology');
-    });
+  }
 
-    this.aggrSubscription = this.filterStateService.updateUrlParams(this.query, ['ontology']);
 
-    // fetch usage statistics summary
-    this.ontologyService.getUsageStatistics().subscribe((data) => {
-      this.usageStats = data;
-    });
+  ngAfterViewInit() {
 
-    this.species = ['Capra hircus', 'Equus caballus', 'Gallus gallus', 'Ovis aries', 'Salmo salar', 'Scophthalmus maximus', 'Sus scrofa',
-      'Bubalus bubalis', 'Bos indicus', 'Dicentrarchus labrax', 'Sparus aurata', 'Oncorhynchus mykiss', 'Cyprinus carpio carpio',
-      'Bos taurus'];
-    this.types = ['cellType', 'organismPart', 'sex', 'developmentalStage', 'cultureType', 'breed', 'healthStatusAtCollection',
-      'healthStatus', 'organism', 'species', 'material', 'organismpart', 'celltype'];
   }
 
   hasActiveFilters() {
@@ -696,6 +711,7 @@ export class OntologyImproverComponent implements OnInit, OnDestroy {
   }
 
   setSocket() {
+    if (this.isBrowser) {
       const url = validation_ws_url + this.username + '/';
       this.socket = new WebSocket(url);
       this.socket.onopen = () => {
@@ -710,6 +726,7 @@ export class OntologyImproverComponent implements OnInit, OnDestroy {
       if (this.socket.readyState === WebSocket.OPEN) {
         this.socket.onopen(null);
       }
+    }
   }
 
   generateStatusMsg(action: any) {
@@ -765,12 +782,15 @@ export class OntologyImproverComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-
+    if (this.isBrowser) {
       if (typeof this.filter_field !== 'undefined') {
         this.filterStateService.resetFilter();
       }
       this.aggrSubscription.unsubscribe();
-      this.socket.close();
+      if (this.socket) {
+        this.socket.close();
+      }
+    }
   }
 
 

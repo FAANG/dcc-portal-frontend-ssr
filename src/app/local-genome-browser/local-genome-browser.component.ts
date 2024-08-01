@@ -70,9 +70,6 @@ export class LocalGenomeBrowserComponent implements OnInit, OnDestroy {
   hasChild = (_: number, node: FileNode) => node.expandable;
 
   ngOnInit(): void {
-    if (this.isBrowser) {
-
-    }
     this.treeControl = new FlatTreeControl<FileNode>(
       node => node.level,
       node => node.expandable,

@@ -7,7 +7,8 @@ import {
   EventEmitter,
   TemplateRef,
   OnInit,
-  PLATFORM_ID, Inject
+  PLATFORM_ID, Inject,
+  ChangeDetectorRef, OnChanges
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
@@ -42,7 +43,7 @@ import { FlexModule } from '@angular/flex-layout/flex';
       FlexModule]
 })
 
-export class TableServerSideComponent implements OnInit, AfterViewInit {
+export class TableServerSideComponent implements OnInit, AfterViewInit, OnChanges {
   @Input() display_fields: Array<string> = []; // list of fields to be displayed in the table
   @Input() column_names: Array<string> = []; // list of column headers for the selected fields
   @Input() templates: {[index: string]: any} = {}; // column templates
@@ -92,7 +93,8 @@ export class TableServerSideComponent implements OnInit, AfterViewInit {
               public dialog: MatDialog,
               private dataService: ApiDataService,
               location: Location,
-              @Inject(PLATFORM_ID) private platformId: Object) {
+              @Inject(PLATFORM_ID) private platformId: Object,
+              private changeDetectorRef: ChangeDetectorRef) {
     this.location = location;
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
@@ -157,11 +159,13 @@ export class TableServerSideComponent implements OnInit, AfterViewInit {
         this.totalHits = res.totalHits; // set length of paginator
         void this.spinner.hide();
         });
+
+    this.changeDetectorRef.detectChanges();
   }
 
   // apply filter when component input "filter_values" is changed
   ngOnChanges() {
-    if (this.dataSource) {
+    if (this.dataSource && typeof this.apiFunction === 'function') {
       void this.spinner.show();
       // reset query params before applying filter
       this.paginator.pageIndex = 0;
