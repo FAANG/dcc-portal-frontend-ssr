@@ -46,6 +46,7 @@ import { HeaderComponent } from '../shared/header/header.component';
   templateUrl: './ontology-improver.component.html',
   styleUrls: ['./ontology-improver.component.css'],
   standalone: true,
+  host: {ngSkipHydration: 'true'},
   imports: [HeaderComponent, MatTabGroup, MatTab, FlexModule, MatButton, FilterComponent, ActiveFilterComponent, MatProgressSpinner,
     TableServerSideComponent, FormsModule, MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle, MatTable,
     MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow,
@@ -197,8 +198,6 @@ export class OntologyImproverComponent implements OnInit, OnDestroy, AfterViewIn
       this.types = ['cellType', 'organismPart', 'sex', 'developmentalStage', 'cultureType', 'breed', 'healthStatusAtCollection',
         'healthStatus', 'organism', 'species', 'material', 'organismpart', 'celltype'];
     }
-
-
   }
 
 
@@ -398,7 +397,7 @@ export class OntologyImproverComponent implements OnInit, OnDestroy, AfterViewIn
       data: this.selectedOntologyData
     });
 
-    this.dialogRef.afterClosed().subscribe((result: any) => {
+    this.dialogRef.afterClosed().subscribe(result => {
       this.selectedOntologyData = null;
       this.newTag = {'tags': null, 'synonyms': null};
     });
@@ -589,7 +588,7 @@ export class OntologyImproverComponent implements OnInit, OnDestroy, AfterViewIn
       width: '40%'
     });
 
-    this.dialogRef.afterClosed().subscribe((result: any) => {
+    this.dialogRef.afterClosed().subscribe(result => {
       if (!this.token) {
         this.username = '';
         this.password = '';
@@ -608,7 +607,7 @@ export class OntologyImproverComponent implements OnInit, OnDestroy, AfterViewIn
       data: JSON.parse(JSON.stringify(selectedOntology)) // copy without reference
     });
 
-    this.dialogRef.afterClosed().subscribe((result: any) => {
+    this.dialogRef.afterClosed().subscribe(result => {
     });
   }
 
