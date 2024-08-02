@@ -85,7 +85,7 @@ export const routes: Routes = [
   {path: 'api', component: ApiDocsComponent},
   {path: 'trackhubs', component: TrackhubsSubmissionComponent},
   {path: 'nextflowSubmission', component: NextflowSubmissionComponent},
-  // {path: 'genome_browser', component: LocalGenomeBrowserComponent},
+  {path: 'genome_browser', component: LocalGenomeBrowserComponent},
   {path: 'graphql', component: GraphqlComponent},
   {path: 'globalsearch', component: GlobalSearchComponent},
   {path: '404', component: NonExistingComponent},

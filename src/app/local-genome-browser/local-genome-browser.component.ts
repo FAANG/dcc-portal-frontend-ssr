@@ -1,10 +1,10 @@
-import {Component, OnInit, ViewChild, ElementRef, OnDestroy, Inject, PLATFORM_ID} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef, OnDestroy, PLATFORM_ID, Inject, AfterViewInit} from '@angular/core';
 import { ApiDataService } from '../services/api-data.service';
 import { MatTreeFlatDataSource, MatTreeFlattener, MatTree, MatTreeNodeDef, MatTreeNode, MatTreeNodePadding, MatTreeNodeToggle } from '@angular/material/tree';
 import { FlatTreeControl } from '@angular/cdk/tree';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Title} from '@angular/platform-browser';
-import * as igv from 'igv';
+// import * as igv from 'igv';
 import { MatIcon } from '@angular/material/icon';
 import { MatIconButton } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
@@ -31,10 +31,9 @@ interface FileNode {
   styleUrls: ['./local-genome-browser.component.css'],
   standalone: true,
   imports: [HeaderComponent, MatAccordion, MatExpansionPanel, MatExpansionPanelHeader, MatExpansionPanelTitle, MatTree, MatTreeNodeDef,
-    MatTreeNode, MatTreeNodePadding, MatCheckbox, FormsModule, MatIconButton, MatTreeNodeToggle, MatIcon],
-  host: {ngSkipHydration: 'true'},
+    MatTreeNode, MatTreeNodePadding, MatCheckbox, FormsModule, MatIconButton, MatTreeNodeToggle, MatIcon]
 })
-export class LocalGenomeBrowserComponent implements OnInit, OnDestroy {
+export class LocalGenomeBrowserComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('igvdiv') igvDiv!: ElementRef;
   currentTracks: {[index: string]: any} = {};
   tracksList: any[] = [];
@@ -49,6 +48,7 @@ export class LocalGenomeBrowserComponent implements OnInit, OnDestroy {
   treeFlattener: any;
   dataSource: any;
   isBrowser = false;
+  igvModule: any;
 
   private _transformer = (node: DirNode, level: number) => {
     return {
@@ -70,6 +70,17 @@ export class LocalGenomeBrowserComponent implements OnInit, OnDestroy {
   hasChild = (_: number, node: FileNode) => node.expandable;
 
   ngOnInit(): void {
+    if (this.isBrowser){
+      const promise = import("/Users/yroochun/Projects/dcc-portal-frontend-ssr/igv.js");
+      promise.then(igv=> {
+        try {
+          console.log(igv)
+        } catch (e) {
+          console.log(e);
+        }
+
+      });
+    }
     this.treeControl = new FlatTreeControl<FileNode>(
       node => node.level,
       node => node.expandable,
@@ -89,23 +100,41 @@ export class LocalGenomeBrowserComponent implements OnInit, OnDestroy {
     this.fetchData();
   }
 
-  configureBrowser() {
+
+  ngAfterViewInit() {
+    if (isPlatformBrowser(this.platformId)) {
+      import('igv').then(igvModule => {
+        const igv = igvModule.default;
+        if (igv && typeof igv.createBrowser === 'function') {
+          console.log("after view: ", igv)
+          this.igvModule = igv;
+        } else {
+          console.error('igv.createBrowser is not a function');
+        }
+      }).catch(error => {
+        console.error('Error loading igv module:', error);
+      });
+    }
+  }
+
+
+  configureBrowser(igv: any) {
     this.options = {
       'genome': this.genome,
       'genomeList': 'https://api.faang.org/files/genomes/genomes.json'
     };
-    this.createBrowser();
+    this.createBrowser(igv);
   }
 
-  async createBrowser() {
+  async createBrowser(igv: any) {
     try {
-        this.browser = await igv.createBrowser(this.igvDiv.nativeElement, this.options);
+      this.browser = await igv.createBrowser(this.igvDiv.nativeElement, this.options);
     } catch (e) {
-        console.log(e);
+      console.log(e);
     }
   }
 
-  addTrackByUrl(trackName: any, trackUrl: string | number, trackType: any, genome: string) {
+  addTrackByUrl(igv: any, trackName: any, trackUrl: string | number, trackType: any, genome: string) {
     // deselecting tracks
     if (this.tracksList.includes(trackUrl)) {
       this.currentTracks[trackUrl] = false;
@@ -123,10 +152,10 @@ export class LocalGenomeBrowserComponent implements OnInit, OnDestroy {
         this.browser.search(this.defaultChr);
       } else {
         this.genome = genome;
-        this.resetTracks();
+        this.resetTracks(igv);
         this.currentTracks[trackUrl] = true;
         this.tracksList.push(trackUrl);
-        this.configureBrowser();
+        this.configureBrowser(igv);
         this.getDefaultChr(genome);
         this.disableSelection = true;
         setTimeout(() => {
@@ -140,6 +169,8 @@ export class LocalGenomeBrowserComponent implements OnInit, OnDestroy {
         }, 4000);
       }
     }
+
+
   }
 
   getDefaultChr(genome: string) {
@@ -155,7 +186,7 @@ export class LocalGenomeBrowserComponent implements OnInit, OnDestroy {
     });
   }
 
-  resetTracks() {
+  resetTracks(igv: any) {
     for (const key of Object.keys(this.currentTracks)) {
       this.currentTracks[key] = false;
     }
@@ -203,7 +234,7 @@ export class LocalGenomeBrowserComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    igv.removeAllBrowsers();
+    // igv.removeAllBrowsers();
   }
 
 }
