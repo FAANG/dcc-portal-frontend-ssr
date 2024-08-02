@@ -70,17 +70,6 @@ export class LocalGenomeBrowserComponent implements OnInit, OnDestroy, AfterView
   hasChild = (_: number, node: FileNode) => node.expandable;
 
   ngOnInit(): void {
-    if (this.isBrowser){
-      const promise = import("/Users/yroochun/Projects/dcc-portal-frontend-ssr/igv.js");
-      promise.then(igv=> {
-        try {
-          console.log(igv)
-        } catch (e) {
-          console.log(e);
-        }
-
-      });
-    }
     this.treeControl = new FlatTreeControl<FileNode>(
       node => node.level,
       node => node.expandable,
@@ -102,7 +91,7 @@ export class LocalGenomeBrowserComponent implements OnInit, OnDestroy, AfterView
 
 
   ngAfterViewInit() {
-    if (isPlatformBrowser(this.platformId)) {
+    if (this.isBrowser) {
       import('igv').then(igvModule => {
         const igv = igvModule.default;
         if (igv && typeof igv.createBrowser === 'function') {
