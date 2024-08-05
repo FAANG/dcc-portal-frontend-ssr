@@ -6,7 +6,7 @@ import { FlexModule } from '@angular/flex-layout/flex';
     templateUrl: './footer.component.html',
     styleUrls: ['./footer.component.css'],
     standalone: true,
-  imports: [FlexModule]
+    imports: [FlexModule]
 })
 export class FooterComponent implements OnInit {
 
