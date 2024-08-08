@@ -191,5 +191,9 @@ export class ProtocolAnalysisComponent implements OnInit {
     }
   }
 
+  encodeDot(filename: string) {
+    return `%22${filename}%22`;
+  }
+
 }
 

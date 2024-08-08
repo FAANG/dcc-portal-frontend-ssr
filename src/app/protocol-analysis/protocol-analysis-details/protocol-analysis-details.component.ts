@@ -41,7 +41,7 @@ export class ProtocolAnalysisDetailsComponent implements OnInit {
   ngOnInit() {
     void this.spinner.show();
     this.route.params.subscribe((params: Params) => {
-      this.fileId = params['id'];
+      this.fileId = decodeURIComponent(params['id']);
       this.titleService.setTitle(`${this.fileId} | FAANG protocol`);
     });
     this.dataSource = new MatTableDataSource<any[]>([]);

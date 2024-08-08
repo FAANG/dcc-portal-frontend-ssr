@@ -1,0 +1,953 @@
+{
+  "took": 3,
+  "timed_out": false,
+  "_shards": {
+    "total": 1,
+    "successful": 1,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 18,
+      "relation": "eq"
+    },
+    "max_score": null,
+    "hits": [
+      {
+        "_index": "ontologies",
+        "_type": "_doc",
+        "_id": "Blastocyst-UBERON_0000358",
+        "_score": null,
+        "_source": {
+          "summary": "The mammalian blastocyst is a hollow ball of cells containing two cell types, the inner cell mass and the trophectoderm[GO].",
+          "projects": [],
+          "synonyms": [
+            "blastocystis",
+            "blastula"
+          ],
+          "type": [
+            "organismPart",
+            "cellType",
+            "developmentalStage"
+          ],
+          "tags": [],
+          "species": [
+            "Bos taurus"
+          ],
+          "status_activity": [
+            {
+              "project": "",
+              "user": "faang-dcc",
+              "status": "Awaiting Assessment",
+              "timestamp": "2023-05-25T09:45:20.468528"
+            },
+            {
+              "project": null,
+              "user": "hacloque",
+              "status": "Verified",
+              "timestamp": "2023-09-21T13:34:44.126676+00:00"
+            },
+            {
+              "project": null,
+              "user": "hacloque",
+              "status": "Needs Improvement",
+              "timestamp": "2023-09-21T13:36:59.448900+00:00"
+            }
+          ],
+          "upvotes_count": 1,
+          "term": "Blastocyst",
+          "id": "UBERON_0000358",
+          "support": "https://www.ebi.ac.uk/vg/faang",
+          "key": "Blastocyst-UBERON_0000358",
+          "downvotes_count": 1
+        },
+        "sort": [
+          "Blastocyst-UBERON_0000358"
+        ]
+      },
+      {
+        "_index": "ontologies",
+        "_type": "_doc",
+        "_id": "Blastula stage (early blastula)-UBERON_0000108",
+        "_score": null,
+        "_source": {
+          "summary": "An early stage of embryonic development in animals. It is produced by cleavage of a fertilized ovum and consists of a spherical layer of around 128 cells surrounding a central fluid-filled cavity called the blastocoel. The blastula follows the morula and precedes the gastrula in the developmental sequence.",
+          "projects": [],
+          "synonyms": [],
+          "type": [
+            "developmentalStage"
+          ],
+          "tags": [],
+          "species": [],
+          "status_activity": [
+            {
+              "project": "",
+              "user": "faang-dcc",
+              "status": "Awaiting Assessment",
+              "timestamp": "2023-05-25T09:45:20.527386"
+            },
+            {
+              "project": null,
+              "user": "hacloque",
+              "status": "Verified",
+              "timestamp": "2023-09-21T13:34:40.342132+00:00"
+            },
+            {
+              "project": null,
+              "user": "hacloque",
+              "status": "Needs Improvement",
+              "timestamp": "2023-09-21T13:39:22.198158+00:00"
+            }
+          ],
+          "upvotes_count": 1,
+          "term": "Blastula stage (early blastula)",
+          "id": "UBERON_0000108",
+          "support": "https://www.ebi.ac.uk/vg/faang",
+          "key": "Blastula stage (early blastula)-UBERON_0000108",
+          "downvotes_count": 1
+        },
+        "sort": [
+          "Blastula stage (early blastula)-UBERON_0000108"
+        ]
+      },
+      {
+        "_index": "ontologies",
+        "_type": "_doc",
+        "_id": "Blastula stage-UBERON_0000108",
+        "_score": null,
+        "_source": {
+          "summary": "An early stage of embryonic development in animals. It is produced by cleavage of a fertilized ovum and consists of a spherical layer of around 128 cells surrounding a central fluid-filled cavity called the blastocoel. The blastula follows the morula and precedes the gastrula in the developmental sequence.",
+          "projects": [],
+          "synonyms": [],
+          "type": [
+            "developmentalStage"
+          ],
+          "tags": [],
+          "species": [],
+          "status_activity": [
+            {
+              "project": "",
+              "user": "faang-dcc",
+              "status": "Awaiting Assessment",
+              "timestamp": "2023-05-25T09:45:20.501249"
+            },
+            {
+              "project": null,
+              "user": "hacloque",
+              "status": "Verified",
+              "timestamp": "2023-09-21T13:34:47.339570+00:00"
+            },
+            {
+              "project": null,
+              "user": "hacloque",
+              "status": "Needs Improvement",
+              "timestamp": "2023-09-21T13:37:20.996411+00:00"
+            }
+          ],
+          "upvotes_count": 1,
+          "term": "Blastula stage",
+          "id": "UBERON_0000108",
+          "support": "https://www.ebi.ac.uk/vg/faang",
+          "key": "Blastula stage-UBERON_0000108",
+          "downvotes_count": 1
+        },
+        "sort": [
+          "Blastula stage-UBERON_0000108"
+        ]
+      },
+      {
+        "_index": "ontologies",
+        "_type": "_doc",
+        "_id": "Blood-UBERON_0000178",
+        "_score": null,
+        "_source": {
+          "summary": "A fluid that is composed of blood plasma and erythrocytes.",
+          "projects": [
+            "GENE-SWitCH"
+          ],
+          "synonyms": [
+            "portion of blood",
+            "vertebrate blood",
+            "whole blood"
+          ],
+          "type": [
+            "organismPart",
+            "cellType"
+          ],
+          "tags": [],
+          "species": [
+            "Ovis aries",
+            "Sus scrofa",
+            "Gallus gallus",
+            "Capra hircus",
+            "Equus caballus",
+            "Bos taurus"
+          ],
+          "status_activity": [
+            {
+              "project": "",
+              "user": "faang-dcc",
+              "status": "Awaiting Assessment",
+              "timestamp": "2023-05-25T09:45:20.556481"
+            },
+            {
+              "project": null,
+              "user": "hacloque",
+              "status": "Needs Improvement",
+              "timestamp": "2023-09-21T13:40:51.580496+00:00"
+            }
+          ],
+          "upvotes_count": 0,
+          "term": "Blood",
+          "id": "UBERON_0000178",
+          "support": "https://www.ebi.ac.uk/vg/faang",
+          "key": "Blood-UBERON_0000178",
+          "downvotes_count": 1
+        },
+        "sort": [
+          "Blood-UBERON_0000178"
+        ]
+      },
+      {
+        "_index": "ontologies",
+        "_type": "_doc",
+        "_id": "Duodenum-UBERON_0002114",
+        "_score": null,
+        "_source": {
+          "summary": "The first part of the small intestine. At the junction of the stomach and the duodenum the alimentary canal is inflected. The duodenum first goes anteriorly for a short distance, turns dorsally, and eventually caudally, thus it is a U-shaped structure with two horizontal sections (a ventral and a dorsal one).",
+          "projects": [
+            "GENE-SWitCH",
+            "BovReg"
+          ],
+          "synonyms": [
+            "proximal intestine",
+            "upper intestine"
+          ],
+          "type": [
+            "organismPart",
+            "cellType"
+          ],
+          "tags": [],
+          "species": [
+            "Ovis aries",
+            "Sus scrofa",
+            "Gallus gallus",
+            "Bos taurus"
+          ],
+          "status_activity": [
+            {
+              "project": "",
+              "user": "faang-dcc",
+              "status": "Awaiting Assessment",
+              "timestamp": "2023-05-25T09:45:22.275149"
+            },
+            {
+              "project": null,
+              "user": "hacloque",
+              "status": "Needs Improvement",
+              "timestamp": "2023-09-21T13:40:59.106438+00:00"
+            }
+          ],
+          "upvotes_count": 0,
+          "term": "Duodenum",
+          "id": "UBERON_0002114",
+          "support": "https://www.ebi.ac.uk/vg/faang",
+          "key": "Duodenum-UBERON_0002114",
+          "downvotes_count": 1
+        },
+        "sort": [
+          "Duodenum-UBERON_0002114"
+        ]
+      },
+      {
+        "_index": "ontologies",
+        "_type": "_doc",
+        "_id": "Early blastula stage-UBERON_0000108",
+        "_score": null,
+        "_source": {
+          "summary": "An early stage of embryonic development in animals. It is produced by cleavage of a fertilized ovum and consists of a spherical layer of around 128 cells surrounding a central fluid-filled cavity called the blastocoel. The blastula follows the morula and precedes the gastrula in the developmental sequence.",
+          "projects": [],
+          "synonyms": [],
+          "type": [
+            "developmentalStage"
+          ],
+          "tags": [],
+          "species": [],
+          "status_activity": [
+            {
+              "project": "",
+              "user": "faang-dcc",
+              "status": "Awaiting Assessment",
+              "timestamp": "2023-05-25T09:45:22.422237"
+            },
+            {
+              "project": null,
+              "user": "hacloque",
+              "status": "Needs Improvement",
+              "timestamp": "2023-09-21T13:37:37.089965+00:00"
+            }
+          ],
+          "upvotes_count": 0,
+          "term": "Early blastula stage",
+          "id": "UBERON_0000108",
+          "support": "https://www.ebi.ac.uk/vg/faang",
+          "key": "Early blastula stage-UBERON_0000108",
+          "downvotes_count": 1
+        },
+        "sort": [
+          "Early blastula stage-UBERON_0000108"
+        ]
+      },
+      {
+        "_index": "ontologies",
+        "_type": "_doc",
+        "_id": "Embryo-UBERON_0000922",
+        "_score": null,
+        "_source": {
+          "summary": "Anatomical entity that comprises the organism in the early stages of growth and differentiation that are characterized by cleavage, the laying down of fundamental tissues, and the formation of primitive organs and organ systems. For example, for mammals, the process would begin with zygote formation and end with birth. For insects, the process would begin at zygote formation and end with larval hatching. For plant zygotic embryos, this would be from zygote formation to the end of seed dormancy. For plant vegetative embryos, this would be from the initial determination of the cell or group of cells to form an embryo until the point when the embryo becomes independent of the parent plant.",
+          "projects": [],
+          "synonyms": [
+            "embryonic organism",
+            "developing organism",
+            "developmental tissue"
+          ],
+          "type": [
+            "organismPart",
+            "cellType",
+            "developmentalStage"
+          ],
+          "tags": [],
+          "species": [
+            "Sus scrofa",
+            "Bos taurus",
+            "Capra hircus"
+          ],
+          "status_activity": [
+            {
+              "project": "",
+              "user": "faang-dcc",
+              "status": "Awaiting Assessment",
+              "timestamp": "2023-05-25T09:45:22.484968"
+            },
+            {
+              "project": null,
+              "user": "hacloque",
+              "status": "Verified",
+              "timestamp": "2023-09-21T13:32:57.919268+00:00"
+            },
+            {
+              "project": [
+                "GENE-SWitCH"
+              ],
+              "user": "hacloque",
+              "status": "Needs Improvement",
+              "timestamp": "2023-09-21T13:37:52.114819+00:00"
+            }
+          ],
+          "upvotes_count": 1,
+          "term": "Embryo",
+          "id": "UBERON_0000922",
+          "support": "https://www.ebi.ac.uk/vg/faang",
+          "key": "Embryo-UBERON_0000922",
+          "downvotes_count": 1
+        },
+        "sort": [
+          "Embryo-UBERON_0000922"
+        ]
+      },
+      {
+        "_index": "ontologies",
+        "_type": "_doc",
+        "_id": "Female-PATO_0000383",
+        "_score": null,
+        "_source": {
+          "summary": "A biological sex quality inhering in an individual or a population that only produces gametes that can be fertilised by male gametes.",
+          "projects": [
+            "BovReg",
+            "GENE-SWitCH"
+          ],
+          "synonyms": [],
+          "type": [
+            "sex"
+          ],
+          "tags": [],
+          "species": [
+            "Bos indicus",
+            "Ovis aries",
+            "Sus scrofa",
+            "Gallus gallus",
+            "Equus caballus",
+            "Bos taurus"
+          ],
+          "status_activity": [
+            {
+              "project": "",
+              "user": "faang-dcc",
+              "status": "Awaiting Assessment",
+              "timestamp": "2023-05-25T09:45:22.766599"
+            },
+            {
+              "project": null,
+              "user": "hacloque",
+              "status": "Needs Improvement",
+              "timestamp": "2023-09-21T13:13:58.447874+00:00"
+            }
+          ],
+          "upvotes_count": 0,
+          "term": "Female",
+          "id": "PATO_0000383",
+          "support": "https://www.ebi.ac.uk/vg/faang",
+          "key": "Female-PATO_0000383",
+          "downvotes_count": 1
+        },
+        "sort": [
+          "Female-PATO_0000383"
+        ]
+      },
+      {
+        "_index": "ontologies",
+        "_type": "_doc",
+        "_id": "Fetal-UBERON_0000323",
+        "_score": null,
+        "_source": {
+          "summary": "An embryo that is at the late embryonic stage; this stage covers late steps of the embryogenesis with a fully formed embryo still developing before birth or egg hatching.",
+          "projects": [],
+          "synonyms": [
+            "fetus",
+            "embryo late growth stage",
+            "embryo late stage"
+          ],
+          "type": [
+            "developmentalStage"
+          ],
+          "tags": [],
+          "species": [],
+          "status_activity": [
+            {
+              "project": "",
+              "user": "faang-dcc",
+              "status": "Awaiting Assessment",
+              "timestamp": "2023-05-25T09:45:22.794621"
+            },
+            {
+              "project": [
+                "GENE-SWitCH"
+              ],
+              "user": "hacloque",
+              "status": "Needs Improvement",
+              "timestamp": "2023-09-21T13:38:20.266140+00:00"
+            }
+          ],
+          "upvotes_count": 0,
+          "term": "Fetal",
+          "id": "UBERON_0000323",
+          "support": "https://www.ebi.ac.uk/vg/faang",
+          "key": "Fetal-UBERON_0000323",
+          "downvotes_count": 1
+        },
+        "sort": [
+          "Fetal-UBERON_0000323"
+        ]
+      },
+      {
+        "_index": "ontologies",
+        "_type": "_doc",
+        "_id": "Fetus-UBERON_0000323",
+        "_score": null,
+        "_source": {
+          "summary": "An embryo that is at the late embryonic stage; this stage covers late steps of the embryogenesis with a fully formed embryo still developing before birth or egg hatching.",
+          "projects": [],
+          "synonyms": [
+            "fetus",
+            "embryo late growth stage",
+            "embryo late stage"
+          ],
+          "type": [
+            "developmentalStage"
+          ],
+          "tags": [],
+          "species": [],
+          "status_activity": [
+            {
+              "project": "",
+              "user": "faang-dcc",
+              "status": "Awaiting Assessment",
+              "timestamp": "2023-05-25T09:45:22.826487"
+            },
+            {
+              "project": null,
+              "user": "hacloque",
+              "status": "Verified",
+              "timestamp": "2023-09-21T13:33:02.793633+00:00"
+            },
+            {
+              "project": [
+                "GENE-SWitCH"
+              ],
+              "user": "hacloque",
+              "status": "Needs Improvement",
+              "timestamp": "2023-09-21T13:38:02.359273+00:00"
+            }
+          ],
+          "upvotes_count": 1,
+          "term": "Fetus",
+          "id": "UBERON_0000323",
+          "support": "https://www.ebi.ac.uk/vg/faang",
+          "key": "Fetus-UBERON_0000323",
+          "downvotes_count": 1
+        },
+        "sort": [
+          "Fetus-UBERON_0000323"
+        ]
+      },
+      {
+        "_index": "ontologies",
+        "_type": "_doc",
+        "_id": "Gastrula stage-UBERON_0000109",
+        "_score": null,
+        "_source": {
+          "summary": "A stage defined by complex and coordinated series of cellular movements that occurs at the end of cleavage during embryonic development of most animals. The details of gastrulation vary from species to species, but usually result in the formation of the three primary germ layers, ectoderm, mesoderm and endoderm.",
+          "projects": [],
+          "synonyms": [
+            "blastocystis trilaminaris stage",
+            "trilaminar blastocyst stage",
+            "trilaminar blastoderm stage",
+            "trilaminar disk stage",
+            "trilaminar germ stage",
+            "trilaminar stage"
+          ],
+          "type": [
+            "developmentalStage"
+          ],
+          "tags": [],
+          "species": [],
+          "status_activity": [
+            {
+              "project": "",
+              "user": "faang-dcc",
+              "status": "Awaiting Assessment",
+              "timestamp": "2023-05-25T09:45:23.087410"
+            },
+            {
+              "project": [
+                "GENE-SWitCH"
+              ],
+              "user": "hacloque",
+              "status": "Needs Improvement",
+              "timestamp": "2023-09-21T13:38:38.125365+00:00"
+            }
+          ],
+          "upvotes_count": 0,
+          "term": "Gastrula stage",
+          "id": "UBERON_0000109",
+          "support": "https://www.ebi.ac.uk/vg/faang",
+          "key": "Gastrula stage-UBERON_0000109",
+          "downvotes_count": 1
+        },
+        "sort": [
+          "Gastrula stage-UBERON_0000109"
+        ]
+      },
+      {
+        "_index": "ontologies",
+        "_type": "_doc",
+        "_id": "Gluteus medius-UBERON_0001371",
+        "_score": null,
+        "_source": {
+          "projects": [
+            "GENE-SWitCH"
+          ],
+          "species": [
+            "Sus scrofa"
+          ],
+          "status_activity": [
+            {
+              "project": "",
+              "user": "faang-dcc",
+              "status": "Awaiting Assessment",
+              "timestamp": "2023-05-25T09:45:23.175896"
+            },
+            {
+              "project": null,
+              "user": "hacloque",
+              "status": "Needs Improvement",
+              "timestamp": "2023-09-21T13:41:08.203620+00:00"
+            }
+          ],
+          "synonyms": [],
+          "upvotes_count": 0,
+          "term": "Gluteus medius",
+          "id": "UBERON_0001371",
+          "type": [
+            "organismPart",
+            "cellType"
+          ],
+          "support": "https://www.ebi.ac.uk/vg/faang",
+          "key": "Gluteus medius-UBERON_0001371",
+          "tags": [],
+          "downvotes_count": 1
+        },
+        "sort": [
+          "Gluteus medius-UBERON_0001371"
+        ]
+      },
+      {
+        "_index": "ontologies",
+        "_type": "_doc",
+        "_id": "Large white-LBO_0000378",
+        "_score": null,
+        "_source": {
+          "projects": [
+            "GENE-SWitCH"
+          ],
+          "species": [
+            "Sus scrofa"
+          ],
+          "status_activity": [
+            {
+              "project": "",
+              "user": "faang-dcc",
+              "status": "Awaiting Assessment",
+              "timestamp": "2023-05-25T09:45:24.298206"
+            },
+            {
+              "project": [
+                "GENE-SWitCH"
+              ],
+              "user": "hacloque",
+              "status": "Needs Improvement",
+              "timestamp": "2023-09-21T13:13:00.815781+00:00"
+            }
+          ],
+          "synonyms": [],
+          "upvotes_count": 0,
+          "term": "Large white",
+          "id": "LBO_0000378",
+          "type": [
+            "breed"
+          ],
+          "support": "https://www.ebi.ac.uk/vg/faang",
+          "key": "Large white-LBO_0000378",
+          "tags": [],
+          "downvotes_count": 1
+        },
+        "sort": [
+          "Large white-LBO_0000378"
+        ]
+      },
+      {
+        "_index": "ontologies",
+        "_type": "_doc",
+        "_id": "Liver-UBERON_0002107",
+        "_score": null,
+        "_source": {
+          "summary": "An exocrine gland which secretes bile and functions in metabolism of protein and carbohydrate and fat, synthesizes substances involved in the clotting of the blood, synthesizes vitamin A, detoxifies poisonous substances, stores glycogen, and breaks down worn-out erythrocytes[GO].",
+          "projects": [
+            "GENE-SWitCH",
+            "BovReg"
+          ],
+          "synonyms": [
+            "iecur",
+            "jecur"
+          ],
+          "type": [
+            "organismPart",
+            "cellType"
+          ],
+          "tags": [],
+          "species": [
+            "Bos indicus",
+            "Ovis aries",
+            "Sus scrofa",
+            "Gallus gallus",
+            "Capra hircus",
+            "Equus caballus",
+            "Bos taurus"
+          ],
+          "status_activity": [
+            {
+              "project": "",
+              "user": "faang-dcc",
+              "status": "Awaiting Assessment",
+              "timestamp": "2023-05-25T09:45:24.601819"
+            },
+            {
+              "project": [
+                "GENE-SWitCH"
+              ],
+              "user": "hacloque",
+              "status": "Needs Improvement",
+              "timestamp": "2023-09-21T12:56:37.266626+00:00"
+            }
+          ],
+          "upvotes_count": 0,
+          "term": "Liver",
+          "id": "UBERON_0002107",
+          "support": "https://www.ebi.ac.uk/vg/faang",
+          "key": "Liver-UBERON_0002107",
+          "downvotes_count": 1
+        },
+        "sort": [
+          "Liver-UBERON_0002107"
+        ]
+      },
+      {
+        "_index": "ontologies",
+        "_type": "_doc",
+        "_id": "Male-PATO_0000384",
+        "_score": null,
+        "_source": {
+          "summary": "A biological sex quality inhering in an individual or a population whose sex organs contain only male gametes.",
+          "projects": [
+            "GENE-SWitCH"
+          ],
+          "synonyms": [],
+          "type": [
+            "sex"
+          ],
+          "tags": [],
+          "species": [
+            "Ovis aries",
+            "Sus scrofa",
+            "Gallus gallus",
+            "Equus caballus",
+            "Bos taurus"
+          ],
+          "status_activity": [
+            {
+              "project": "",
+              "user": "faang-dcc",
+              "status": "Awaiting Assessment",
+              "timestamp": "2023-05-25T09:45:24.812188"
+            },
+            {
+              "project": null,
+              "user": "hacloque",
+              "status": "Needs Improvement",
+              "timestamp": "2023-09-21T13:14:13.573068+00:00"
+            }
+          ],
+          "upvotes_count": 0,
+          "term": "Male",
+          "id": "PATO_0000384",
+          "support": "https://www.ebi.ac.uk/vg/faang",
+          "key": "Male-PATO_0000384",
+          "downvotes_count": 1
+        },
+        "sort": [
+          "Male-PATO_0000384"
+        ]
+      },
+      {
+        "_index": "ontologies",
+        "_type": "_doc",
+        "_id": "Oocyte-CL_0000023",
+        "_score": null,
+        "_source": {
+          "summary": "A female germ cell that has entered meiosis.",
+          "projects": [],
+          "synonyms": [
+            "oogonium"
+          ],
+          "type": [
+            "organismPart",
+            "cellType",
+            "developmentalStage"
+          ],
+          "tags": [],
+          "species": [
+            "Bos taurus",
+            "Sus scrofa",
+            "Capra hircus"
+          ],
+          "status_activity": [
+            {
+              "project": "",
+              "user": "faang-dcc",
+              "status": "Awaiting Assessment",
+              "timestamp": "2023-05-25T09:45:25.936509"
+            },
+            {
+              "project": null,
+              "user": "hacloque",
+              "status": "Needs Improvement",
+              "timestamp": "2023-09-21T13:36:45.000132+00:00"
+            }
+          ],
+          "upvotes_count": 0,
+          "term": "Oocyte",
+          "id": "CL_0000023",
+          "support": "https://www.ebi.ac.uk/vg/faang",
+          "key": "Oocyte-CL_0000023",
+          "downvotes_count": 1
+        },
+        "sort": [
+          "Oocyte-CL_0000023"
+        ]
+      },
+      {
+        "_index": "ontologies",
+        "_type": "_doc",
+        "_id": "blastula stage-UBERON_0000108",
+        "_score": null,
+        "_source": {
+          "summary": "An early stage of embryonic development in animals. It is produced by cleavage of a fertilized ovum and consists of a spherical layer of around 128 cells surrounding a central fluid-filled cavity called the blastocoel. The blastula follows the morula and precedes the gastrula in the developmental sequence.",
+          "projects": [],
+          "synonyms": [],
+          "type": [
+            "developmentalStage"
+          ],
+          "tags": [],
+          "species": [],
+          "status_activity": [
+            {
+              "project": "",
+              "user": "faang-dcc",
+              "status": "Awaiting Assessment",
+              "timestamp": "2023-05-25T09:45:30.470311"
+            },
+            {
+              "project": null,
+              "user": "hacloque",
+              "status": "Needs Improvement",
+              "timestamp": "2023-09-21T13:38:59.416391+00:00"
+            }
+          ],
+          "upvotes_count": 0,
+          "term": "blastula stage",
+          "id": "UBERON_0000108",
+          "support": "https://www.ebi.ac.uk/vg/faang",
+          "key": "blastula stage-UBERON_0000108",
+          "downvotes_count": 1
+        },
+        "sort": [
+          "blastula stage-UBERON_0000108"
+        ]
+      },
+      {
+        "_index": "ontologies",
+        "_type": "_doc",
+        "_id": "skeletal muscle tissue-UBERON_0001134",
+        "_score": null,
+        "_source": {
+          "summary": "Muscle tissue that consists primarily of skeletal muscle fibers.",
+          "projects": [
+            "GENE-SWitCH",
+            "AQUA-FAANG",
+            "BovReg"
+          ],
+          "synonyms": [
+            "skeletal muscle",
+            "skeletal muscle system",
+            "somatic muscle"
+          ],
+          "type": [
+            "organismPart",
+            "cellType"
+          ],
+          "tags": [],
+          "species": [
+            "Bos indicus",
+            "Sus scrofa",
+            "Cyprinus carpio carpio",
+            "Gallus gallus",
+            "Bos taurus"
+          ],
+          "status_activity": [
+            {
+              "project": "",
+              "user": "faang-dcc",
+              "status": "Awaiting Assessment",
+              "timestamp": "2023-05-25T09:45:44.565585"
+            },
+            {
+              "project": [
+                "GENE-SWitCH"
+              ],
+              "user": "hacloque",
+              "status": "Needs Improvement",
+              "timestamp": "2023-09-21T13:09:57.058777+00:00"
+            }
+          ],
+          "upvotes_count": 0,
+          "term": "skeletal muscle tissue",
+          "id": "UBERON_0001134",
+          "support": "https://www.ebi.ac.uk/vg/faang",
+          "key": "skeletal muscle tissue-UBERON_0001134",
+          "downvotes_count": 1
+        },
+        "sort": [
+          "skeletal muscle tissue-UBERON_0001134"
+        ]
+      }
+    ]
+  },
+  "aggregations": {
+    "projects": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "GENE-SWitCH",
+          "doc_count": 8
+        },
+        {
+          "key": "BovReg",
+          "doc_count": 4
+        },
+        {
+          "key": "AQUA-FAANG",
+          "doc_count": 1
+        }
+      ]
+    },
+    "status_activity": {
+      "doc_count": 41,
+      "status": {
+        "doc_count_error_upper_bound": 0,
+        "sum_other_doc_count": 0,
+        "buckets": [
+          {
+            "key": "Awaiting Assessment",
+            "doc_count": 18
+          },
+          {
+            "key": "Needs Improvement",
+            "doc_count": 18
+          },
+          {
+            "key": "Verified",
+            "doc_count": 5
+          }
+        ]
+      }
+    },
+    "type": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
+        {
+          "key": "developmentalStage",
+          "doc_count": 10
+        },
+        {
+          "key": "cellType",
+          "doc_count": 8
+        },
+        {
+          "key": "organismPart",
+          "doc_count": 8
+        },
+        {
+          "key": "sex",
+          "doc_count": 2
+        },
+        {
+          "key": "breed",
+          "doc_count": 1
+        }
+      ]
+    }
+  }
+}

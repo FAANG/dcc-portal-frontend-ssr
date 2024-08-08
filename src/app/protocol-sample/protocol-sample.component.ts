@@ -191,4 +191,8 @@ export class ProtocolSampleComponent implements OnInit, OnDestroy {
     }
   }
 
+  encodeDot(filename: string) {
+    return `%22${filename}%22`;
+  }
+
 }

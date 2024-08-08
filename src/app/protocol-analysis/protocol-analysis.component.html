@@ -73,7 +73,8 @@
 </div>
 
 <ng-template #nameTemplate let-item>
-  <a style="cursor: pointer" target="_blank" [routerLink]="item['key']">{{item['protocol_name']}}</a>
+  <a style="cursor: pointer" target="_blank" [routerLink]="encodeDot(item['key'])">{{item['protocol_name']}}</a>
+
 </ng-template>
 
 <ng-template #uniTemplate let-item>
