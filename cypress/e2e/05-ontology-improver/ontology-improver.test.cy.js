@@ -37,7 +37,6 @@ describe('Ontology Improver Page', () => {
 
   it('should filter on Project', () => {
     ontologyPage.check_url_filter('[title="Projects"] > .mat-mdc-card > :nth-child(2) > :nth-child(1)', 'path',  'projects')
-    //cy.get('[title="Projects"] > .mat-mdc-card > :nth-child(2) > :nth-child(1)')
   })
 
   it('should filter on Ontology Type', () => {
