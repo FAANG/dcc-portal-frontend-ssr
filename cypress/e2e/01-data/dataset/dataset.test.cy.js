@@ -16,7 +16,7 @@ describe('Dataset Page', () => {
     datasetPage.check_header_sort_asc('.cdk-column-datasetAccession', 'accession')
   })
 
-  it.skip('should sort table on column Dataset Accession desc', () => {
+  it('should sort table on column Dataset Accession desc', () => {
     datasetPage.check_header_sort_desc('.cdk-column-datasetAccession', 'accession')
   })
 

@@ -65,11 +65,11 @@ export class ProjectsPage{
     cy.contains("The BovReg consortium will provide a comprehensive map of functionally active genomic features in cattle and how their (epi)genetic variation in beef and dairy breeds translates into phenotypes.");
     cy.scrollTo('bottom')
 
-     cy.get('[ng-reflect-target_type="publication"] > :nth-child(1)').should('be.visible')
-     cy.get('[ng-reflect-target_type="publication"] > :nth-child(1)').find('tbody').find('tr').should("have.length.least", 4)
+    cy.get('[ng-reflect-target_type="publication"] > :nth-child(1)').should('be.visible')
+    cy.get('[ng-reflect-target_type="publication"] > :nth-child(1)').find('tbody').find('tr').should("have.length.least", 4)
 
-     cy.get('[ng-reflect-target_type="pipeline"] > :nth-child(1)').should('be.visible')
-     cy.get('[ng-reflect-target_type="pipeline"] > :nth-child(1)').find('tbody').find('tr').should("have.length.at.least", 1)
+    cy.get('[ng-reflect-target_type="pipeline"] > :nth-child(1)').should('be.visible')
+    cy.get('[ng-reflect-target_type="pipeline"] > :nth-child(1)').find('tbody').find('tr').should("have.length.at.least", 1)
 
     cy.get('[ng-reflect-target_type="dataset"] > :nth-child(1)').should('be.visible')
     cy.get('[ng-reflect-target_type="dataset"] > :nth-child(1)').find('tbody').find('tr').should("have.length.at.least", 2)
@@ -81,13 +81,13 @@ export class ProjectsPage{
 
     cy.get('[ng-reflect-target_type="organism"] > :nth-child(1)').should('be.visible')
     cy.get('[ng-reflect-target_type="organism"] > :nth-child(1)').find('tbody').find('tr').should("have.length", 10)
-     cy.get('[ng-reflect-target_type="organism"] > :nth-child(1) > .table-responsive')
+    cy.get('[ng-reflect-target_type="organism"] > :nth-child(1) > .table-responsive')
       .get('.mat-mdc-table > .mdc-data-table__content > :nth-child(1) > .cdk-column-BioSamples-ID')
       .should('contain', 'SAMEA')
 
     cy.get('[ng-reflect-target_type="specimen"] > :nth-child(1)').should('be.visible')
     cy.get('[ng-reflect-target_type="specimen"] > :nth-child(1)').find('tbody').find('tr').should("have.length", 10)
-     cy.get('[ng-reflect-target_type="specimen"] > :nth-child(1) > .table-responsive')
+    cy.get('[ng-reflect-target_type="specimen"] > :nth-child(1) > .table-responsive')
       .get('.mat-mdc-table > .mdc-data-table__content > :nth-child(1) > .cdk-column-BioSamples-ID')
       .should('contain', 'SAMEA')
   }
@@ -118,13 +118,13 @@ export class ProjectsPage{
 
     cy.get('[ng-reflect-target_type="organism"] > :nth-child(1)').should('be.visible')
     cy.get('[ng-reflect-target_type="organism"] > :nth-child(1)').find('tbody').find('tr').should("have.length", 10)
-     cy.get('[ng-reflect-target_type="organism"] > :nth-child(1) > .table-responsive')
+    cy.get('[ng-reflect-target_type="organism"] > :nth-child(1) > .table-responsive')
       .get('.mat-mdc-table > .mdc-data-table__content > :nth-child(1) > .cdk-column-BioSamples-ID')
       .should('contain', 'SAMEA')
 
     cy.get('[ng-reflect-target_type="specimen"] > :nth-child(1)').should('be.visible')
     cy.get('[ng-reflect-target_type="specimen"] > :nth-child(1)').find('tbody').find('tr').should("have.length", 10)
-     cy.get('[ng-reflect-target_type="specimen"] > :nth-child(1) > .table-responsive')
+    cy.get('[ng-reflect-target_type="specimen"] > :nth-child(1) > .table-responsive')
       .get('.mat-mdc-table > .mdc-data-table__content > :nth-child(1) > .cdk-column-BioSamples-ID')
       .should('contain', 'SAMEA')
 

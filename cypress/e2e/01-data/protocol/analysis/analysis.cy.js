@@ -88,8 +88,8 @@ export class AnalysisPage {
 
     cy.get('app-active-filter.ng-star-inserted').children().should('have.length', 2)
 
-    cy.contains('Remove all filters').click({force: true})
-    // cy.wait("@noFilter", {timeout: 60000}).its("request.url").should("contain", 'filters=%7B%7D&aggs')
+    cy.contains('Remove all filters').click()
+    cy.wait("@noFilter", {timeout: 60000}).its("request.url").should("contain", 'filters=%7B%7D&aggs')
     cy.get('app-active-filter.ng-star-inserted').should('not.exist')
   }
 

@@ -18,7 +18,7 @@ describe('File Page', () => {
     filePage.check_header_sort_asc('.cdk-column-fileName', 'name')
   })
 
-  it.skip('should sort table on column FileName desc', () => {
+  it('should sort table on column FileName desc', () => {
     filePage.check_header_sort_desc('.cdk-column-fileName', 'name')
   })
   // --------------------

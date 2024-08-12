@@ -12,6 +12,14 @@ describe('Protocol Sample Page', () => {
     samplePage.check_title()
   })
 
+  it('should sort table on column Protocol name asc', () => {
+    samplePage.check_header_sort_asc('.cdk-column-protocol_name', 'protocolName')
+  })
+
+  it('should sort table on column Protocol name desc', () => {
+    samplePage.check_header_sort_desc('.cdk-column-protocol_name', 'protocolName')
+  })
+  // --------------------
 
   it('should sort table on column Organisation asc', () => {
     samplePage.check_header_sort_asc('.cdk-column-university_name', 'universityName')
@@ -19,15 +27,6 @@ describe('Protocol Sample Page', () => {
 
   it('should sort table on column Organisation desc', () => {
     samplePage.check_header_sort_desc('.cdk-column-university_name', 'universityName')
-  })
-  // --------------------
-
-  it.skip('should sort table on column Protocol name asc', () => {
-    samplePage.check_header_sort_asc('.cdk-column-protocol_name', 'protocolName')
-  })
-
-  it.skip('should sort table on column Protocol name desc', () => {
-    samplePage.check_header_sort_desc('.cdk-column-protocol_name', 'protocolName')
   })
   // --------------------
 
@@ -54,11 +53,6 @@ describe('Protocol Sample Page', () => {
   })
 
   it('should remove filters', () => {
-    // With SSR (Server-Side Rendering), data is prefetched and rendered on the server, eliminating the need for an
-    // API request when the page loads. Therefore, the initial API call is made only when we click on the tab.
-    cy.get('[id ^="mat-tab-label"][id $="-2"]').click()
-    cy.get('[id ^="mat-tab-label"][id $="-0"]').click()
-
     samplePage.removeFilters('[title="Protocol Year"] > .mat-mdc-card > :nth-child(2) > :nth-child(1)',
       '[title="Organisation"] > .mat-mdc-card > :nth-child(2) > :nth-child(1)',
       'protocolDate',

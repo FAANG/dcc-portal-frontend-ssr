@@ -71,6 +71,13 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "cypress_development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "ssr": false,
+              "prerender": false
             }
           },
           "defaultConfiguration": "production"
@@ -83,6 +90,10 @@
             },
             "development": {
               "buildTarget": "dcc-portal-frontend-ssr:build:development"
+            },
+            "cypress_development": {
+              "buildTarget": "dcc-portal-frontend-ssr:build:cypress_development",
+              "port": 4201
             }
           },
           "defaultConfiguration": "development"

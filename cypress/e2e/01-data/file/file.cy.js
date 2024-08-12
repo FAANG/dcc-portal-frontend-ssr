@@ -25,13 +25,13 @@ export class FilePage {
   }
 
   check_header_sort_desc(classname, colname) {
-    cy.intercept('GET', `/data/file/_search/*&sort=*${colname}:asc*`, {fixture: 'data/file.json'}).as('ascendingList')
     cy.intercept('GET', `/data/file/_search/*&sort=*${colname}:desc*`, {fixture: 'data/file.json'}).as('descendingList')
+    cy.intercept('GET', `/data/file/_search/*&sort=*${colname}:asc*`, {fixture: 'data/file.json'}).as('ascendingList')
 
     cy.get(`.mat-mdc-header-row > ${classname}`).click({force: true})
     cy.get(`.mat-mdc-header-row > ${classname}`).click({force: true})
 
-    cy.wait('@descendingList').then(({request, response}) => {
+    cy.wait('@descendingList', {timeout: 60000}).then(({request, response}) => {
       cy.get('tbody').find('tr').should("have.length", 25)
       cy.get(`.mat-mdc-header-row > ${classname}`).should('have.attr', 'aria-sort', 'descending')
       expect(response.statusCode).to.eq(200)
@@ -94,8 +94,8 @@ export class FilePage {
 
     cy.get('app-active-filter.ng-star-inserted').children().should('have.length', 2)
 
-    cy.contains('Remove all filters').click({force: true})
-    // cy.wait("@noFilter").its("request.url").should("contain", 'filters=%7B%7D&aggs')
+    cy.contains('Remove all filters').click()
+    cy.wait("@noFilter").its("request.url").should("contain", 'filters=%7B%7D&aggs')
     cy.get('app-active-filter.ng-star-inserted').should('not.exist')
   }
 

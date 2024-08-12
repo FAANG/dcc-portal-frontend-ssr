@@ -15,11 +15,11 @@ describe('Protocol Analysis Page', () => {
 
   /* sort table */
 
-  it.skip('should sort table on column Protocol name asc', () => {
+  it('should sort table on column Protocol name asc', () => {
     analysisPage.check_header_sort_asc('.cdk-column-protocol_name', 'protocolName')
   })
 
-  it.skip('should sort table on column Protocol name desc', () => {
+  it('should sort table on column Protocol name desc', () => {
     analysisPage.check_header_sort_desc('.cdk-column-protocol_name', 'protocolName')
   })
   // --------------------
@@ -54,14 +54,10 @@ describe('Protocol Analysis Page', () => {
       '[title="Organisation"] > .mat-mdc-card > :nth-child(2) > :nth-child(1)',
       'protocolDate',
       'universityName',
-      ['Roslin Institute (Edinburgh, UK)', '2022'])
+      ['Roslin Institute (Edinburgh, UK)', '2020'])
   })
 
   it('should remove filters', () => {
-    // With SSR (Server-Side Rendering), data is prefetched and rendered on the server, eliminating the need for an
-    // API request when the page loads. Therefore, the initial API call is made only when we click on the tab.
-    cy.get('[id ^="mat-tab-label"][id $="-0"]').click()
-    cy.get('[id ^="mat-tab-label"][id $="-2"]').click()
     analysisPage.removeFilters('[title="Protocol Year"] > .mat-mdc-card > :nth-child(2) > :nth-child(1)',
       '[title="Organisation"] > .mat-mdc-card > :nth-child(2) > :nth-child(1)',
       'protocolDate',

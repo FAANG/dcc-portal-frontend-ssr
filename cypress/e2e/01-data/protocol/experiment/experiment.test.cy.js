@@ -14,21 +14,21 @@ describe('Protocol Experiment Page', () => {
 
   /* sort table */
 
+  it('should sort table on column Protocol type asc', () => {
+    experimentPage.check_header_sort_asc('.cdk-column-protocol_type', 'name')
+  })
+
+  it('should sort table on column Protocol type desc', () => {
+    experimentPage.check_header_sort_desc('.cdk-column-protocol_type', 'name')
+  })
+  // --------------------
+
   it('should sort table on column Experiment Target asc', () => {
     experimentPage.check_header_sort_asc('.cdk-column-experiment_target', 'experimentTarget')
   })
 
   it('should sort table on column Experiment Target desc', () => {
     experimentPage.check_header_sort_desc('.cdk-column-experiment_target', 'experimentTarget')
-  })
-  // --------------------
-
-  it.skip('should sort table on column Protocol type asc', () => {
-    experimentPage.check_header_sort_asc('.cdk-column-protocol_type', 'name')
-  })
-
-  it.skip('should sort table on column Protocol type desc', () => {
-    experimentPage.check_header_sort_desc('.cdk-column-protocol_type', 'name')
   })
   // --------------------
 
@@ -59,11 +59,6 @@ describe('Protocol Experiment Page', () => {
   })
 
   it('should remove filters', () => {
-    // With SSR (Server-Side Rendering), data is prefetched and rendered on the server, eliminating the need for an
-    // API request when the page loads. Therefore, the initial API call is made only when we click on the tab.
-    cy.get('[id ^="mat-tab-label"][id $="-0"]').click()
-    cy.get('[id ^="mat-tab-label"][id $="-1"]').click()
-
     experimentPage.removeFilters('[title="Assay type"] > .mat-mdc-card > :nth-child(2) > :nth-child(1)',
       '[title="Experiment target"] > .mat-mdc-card > :nth-child(2) > :nth-child(1)',
       'assayType',

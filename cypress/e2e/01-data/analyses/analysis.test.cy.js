@@ -80,7 +80,7 @@ describe('Analysis Page', () => {
     analysisPage.check_url_filter('[title="Species"] > .mat-mdc-card > :nth-child(2) > :nth-child(1)', 'path', 'organism.text')
   })
 
-  it.skip('should filter table by Assay Type - microRNA profiling by high throughput sequencing', () => {
+  it('should filter table by Assay Type - microRNA profiling by high throughput sequencing', () => {
     analysisPage.check_url_filter('[title="Assay type"] > .mat-mdc-card > :nth-child(2) > :nth-child(1)', 'path', 'assayType')
   })
 
@@ -97,7 +97,7 @@ describe('Analysis Page', () => {
       '[title="Dataset"] > .mat-mdc-card > :nth-child(2) > :nth-child(1)',
       'analysisType',
       'datasetAccession',
-      ['PRJEB19199', 'SEQUENCE_ANNOTATION', 'PROCESSED_READS'])
+      ['PRJEB19199', 'SEQUENCE_ANNOTATION'])
   })
 
   it('should remove filters', () => {

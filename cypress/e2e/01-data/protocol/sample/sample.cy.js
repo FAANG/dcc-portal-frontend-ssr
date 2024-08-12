@@ -14,14 +14,7 @@ export class SamplePage {
       .find('tr')
       .should("have.length", 25)
 
-
-    let cypress_wait;
-    if (colname === 'protocolName') {
-      cypress_wait = cy.wait('@ascendingList', {timeout: 80000})
-    } else {
-      cypress_wait = cy.wait('@ascendingList')
-    }
-    cypress_wait.then(({request, response}) => {
+    cy.wait('@ascendingList').then(({request, response}) => {
       cy.get(`.mat-mdc-header-row > ${classname}`).should('have.attr', 'aria-sort', 'ascending')
       expect(response.statusCode).to.eq(200)
       expect(request.url).to.contain(colname + ':asc')
@@ -38,15 +31,7 @@ export class SamplePage {
     cy.get(`.mat-mdc-header-row > ${classname}`).click({force: true})
     cy.get(`.mat-mdc-header-row > ${classname}`).click({force: true})
 
-
-    let cypress_wait;
-    if (colname === 'protocolName') {
-      cypress_wait = cy.wait('@descendingList', {timeout: 80000})
-    } else {
-      cypress_wait = cy.wait('@descendingList')
-    }
-
-    cypress_wait.then(({request, response}) => {
+    cy.wait('@descendingList', {timeout: 60000}).then(({request, response}) => {
       cy.get('tbody').find('tr').should("have.length", 25)
       cy.get(`.mat-mdc-header-row > ${classname}`).should('have.attr', 'aria-sort', 'descending')
       expect(response.statusCode).to.eq(200)
@@ -109,8 +94,8 @@ export class SamplePage {
 
     cy.get('app-active-filter.ng-star-inserted').children().should('have.length', 2)
 
-    cy.contains('Remove all filters').click({force: true})
-    // cy.wait("@noFilter", {timeout: 60000}).its("request.url").should("contain", 'filters=%7B%7D&aggs')
+    cy.contains('Remove all filters').click()
+    cy.wait("@noFilter", {timeout: 60000}).its("request.url").should("contain", 'filters=%7B%7D&aggs')
     cy.get('app-active-filter.ng-star-inserted').should('not.exist')
   }
 

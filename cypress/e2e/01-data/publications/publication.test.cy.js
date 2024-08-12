@@ -8,7 +8,7 @@ describe('Publication Page', () => {
 
   let publicationPage = new PublicationPage()
 
-  it('should display "FAANG Publications"', () => {
+  it('should display "FAANG Datasets"', () => {
     publicationPage.check_title()
   })
 
