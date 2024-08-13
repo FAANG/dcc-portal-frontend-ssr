@@ -1,0 +1,19 @@
+version: "3"
+services:
+  faang-frontend:
+    image: "${GCR_HOSTNAME}/${PROJECT_ID}/${REPO_NAME}/${SERVICE_NAME}:${TAG}"
+    ports:
+      - '80:8080'
+  cypress:
+    image: faang-cypress-tests
+    build:
+      context: .
+      dockerfile: faang-cypress.dockerfile
+    depends_on:
+      - faang-frontend
+    network_mode: 'host'
+
+networks:
+  default:
+    external:
+      name: cloudbuild
