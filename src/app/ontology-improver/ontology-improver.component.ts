@@ -732,11 +732,15 @@ export class OntologyImproverComponent implements OnInit, OnDestroy, AfterViewIn
     if (action.status === 'Awaiting Assessment') {
       return `${action.user} created the ontology`;
     } else if (action.status.toLowerCase() === 'verified') {
-      return `${action.user} verified that the ontology is suitable`;
+      let msg = `${action.user} verified that the ontology is suitable`;
+      if (action.project && action.project !== undefined && action.project.length > 0) {
+        msg += ` for project(s) ${action.project.join(', ')}`;
+      }
+      return msg;
     } else if (action.status.toLowerCase() === 'needs improvement') {
       let msg = `${action.user} suggested improvements to the ontology`;
-      if (action.project !== undefined && action.project.length > 0) {
-        msg += `for project(s) ${action.project.join(', ')}`;
+      if (action.project && action.project !== undefined && action.project.length > 0) {
+        msg += ` for project(s) ${action.project.join(', ')}`;
       }
       return msg;
     }
