@@ -1,8 +1,8 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, Inject, Input, OnInit, PLATFORM_ID} from '@angular/core';
 import { ApiDataService } from '../services/api-data.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { NgTemplateOutlet, NgPlural, NgPluralCase, KeyValuePipe } from '@angular/common';
+import {NgTemplateOutlet, NgPlural, NgPluralCase, KeyValuePipe, isPlatformBrowser} from '@angular/common';
 import { MatList, MatListItem } from '@angular/material/list';
 import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { MatIcon } from '@angular/material/icon';
@@ -26,13 +26,16 @@ export class GlobalSearchComponent implements OnInit {
   showSpinner = false;
 
   queryParams: any = {};
-
   timer: any = null;
+  isBrowser = false;
 
   constructor(
     private dataService: ApiDataService, private router: Router, private route: ActivatedRoute,
-    private titleService: Title, private cdr: ChangeDetectorRef
-  ) { }
+    private titleService: Title,
+    @Inject(PLATFORM_ID) private platformId: Object
+  ) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
 
   ngOnInit(): void {
     this.titleService.setTitle('FAANG Global Search');
@@ -43,15 +46,17 @@ export class GlobalSearchComponent implements OnInit {
       this.onSearch(0);
     });
 
-    window.addEventListener('popstate', (event) => {
-      if (window.location.href !== `${window.location.origin}/globalsearch`) {
-        void this.router.navigate(['/globalsearch'], {
-          relativeTo: this.route,
-          queryParamsHandling: 'merge',
-          replaceUrl: true
-        });
-      }
-    });
+    if (this.isBrowser) {
+      window.addEventListener('popstate', (event) => {
+        if (window.location.href !== `${window.location.origin}/globalsearch`) {
+          void this.router.navigate(['/globalsearch'], {
+            relativeTo: this.route,
+            queryParamsHandling: 'merge',
+            replaceUrl: true
+          });
+        }
+      });
+    }
   }
 
   onSearch(time = 1000) {
